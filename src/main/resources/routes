@@ -1,0 +1,12 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Generic Endpoints
+GET  /health                                          uk.co.telegraph.utils.server.routes.HealthEndpoints.internalHealth
+GET  /recommend-articles/health                                   uk.co.telegraph.utils.server.routes.HealthEndpoints.externalHealth(cached: Boolean ?= true)
+GET  /recommend-articles/admin                                    uk.co.telegraph.utils.server.routes.AdminEndpoints.getConfig
+GET  /recommend-articles/swagger.json                             controllers.ApiHelpController.getResources
+
+# Service endpoints
+GET  /recommend-articles/ping                                    uk.co.telegraph.recommendarticles.routes.SampleEndpoints.ping

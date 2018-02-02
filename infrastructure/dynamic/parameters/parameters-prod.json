@@ -1,0 +1,34 @@
+[
+    {
+        "ParameterKey"  : "ApplicationName",
+        "ParameterValue": "recommend-articles"
+    },
+    {
+        "ParameterKey"  : "DeploymentEnv",
+        "ParameterValue": "prod"
+    },
+    {
+        "ParameterKey"  : "CloudFormationBucket",
+        "ParameterValue": "artifacts-repo"
+    },
+    {
+        "ParameterKey"  : "CloudFormationKey",
+        "ParameterValue": "recommend-articles"
+    },
+    {
+        "ParameterKey"  : "CloudFormationCommonKey",
+        "ParameterValue": "common/latest"
+    },
+    {
+        "ParameterKey"  : "EnvECSClusterStack",
+        "ParameterValue": "cluster-prod"
+    },
+    {
+        "ParameterKey": "VpcId",
+        "ParameterValue": "vpc-96cd1bf2"
+    },
+    {
+        "ParameterKey": "BuildVersion",
+        "ParameterValue": "1.0.0"
+    }
+]
