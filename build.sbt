@@ -38,8 +38,6 @@ lazy val ct = (project in file("component-test"))
   .disablePlugins(PipelinePlugin)
   .settings(
     parallelExecution in Test := false,
-    wiremockRootDir           := baseDirectory.value / "src"/ "test" / "resources" / "wiremock",
-    wiremockHttpPort          := 19999,
     publishArtifact           := false,
     ComponentTests
   )

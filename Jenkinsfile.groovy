@@ -66,7 +66,25 @@ ansiColor('xterm') {
             stage("Functional Tests"){
                 sh """
                     echo "Running Component Tests"
+                    export APP_NAME="${projectName}"
+                    export APP_VERSION="${pipeline_version}"
+                    export ENVIRONMENT=ct
+                    
+                    docker-compose up -d
                 """
+                try {
+                    sh """
+                        ${sbtFolder}/sbt "ct/test-only -- -n ct"
+                    """
+                    junit "component-test/target/test-reports/**/*.xml"
+                }finally {
+                    sh """
+                        export APP_NAME="${projectName}"
+                        export APP_VERSION="${pipeline_version}"
+
+                        docker-compose down
+                    """
+                }
             }
 
             stage("Publish"){

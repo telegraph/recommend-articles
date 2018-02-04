@@ -1,0 +1,19 @@
+version: '2'
+services:
+  service:
+    environment:
+      - ENVIRONMENT=ct
+      - AWS_PROFILE=preprod
+      - DOCKERHOST=mock
+      - DOCKERPORT=8080
+    image: "${APP_NAME}:${APP_VERSION}"
+    depends_on:
+      - mock
+    ports:
+      - "9000"
+  mock:
+    image: "rodolpheche/wiremock:2.14.0-alpine"
+    ports:
+      - "8080:8080"
+    expose:
+      - "8080"
