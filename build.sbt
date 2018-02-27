@@ -1,6 +1,8 @@
 import Dependencies._
 import sbt.Keys._
 
+import scala.util.Try
+
 // give the user a nice default project!
 lazy val buildNumber = sys.env.get("BUILD_NUMBER").map( bn => s"b$bn")
 
@@ -37,6 +39,20 @@ lazy val root = (project in file("."))
 lazy val ct = (project in file("component-test"))
   .disablePlugins(PipelinePlugin)
   .settings(
+    envVars := {
+      def queryDockerInstancePort(serviceName:String, port:Int, default:String = ""):String = {
+        Try{
+          val ipAndPort = s"docker-compose port $serviceName $port".!!
+          ipAndPort.trim.split(':').last
+        }.getOrElse(default)
+      }
+
+      Map(
+        "SERVICE_PORT"  -> queryDockerInstancePort("service", 9000, "9000"),
+        "WIREMOCK_PORT" -> queryDockerInstancePort("mock",    8080)
+      )
+    },
+    fork                      := true,
     parallelExecution in Test := false,
     publishArtifact           := false,
     ComponentTests

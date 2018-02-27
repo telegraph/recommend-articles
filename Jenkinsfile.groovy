@@ -74,6 +74,8 @@ ansiColor('xterm') {
                 """
                 try {
                     sh """
+                        export APP_NAME="${projectName}"
+                        export APP_VERSION="${pipeline_version}"
                         ${sbtFolder}/sbt "ct/test-only -- -n ct"
                     """
                     junit "component-test/target/test-reports/**/*.xml"
