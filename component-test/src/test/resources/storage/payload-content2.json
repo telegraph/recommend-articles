@@ -1,0 +1,73 @@
+{
+    "metadata": {
+        "content-id": "22222222-2222-2222-2222-222222222222",
+        "type": "article",
+        "premium": false,
+        "language": "en-GB",
+        "tmg-created-date": "2017-01-01T00:00:00.000Z",
+        "tmg-last-modified-date": "2017-01-01T00:00:00.000Z",
+        "source": {
+            "original-source": "Test",
+            "original-feed-name": "Fake",
+            "source-id": "2",
+            "created-date": "2017-01-01T00:00:00.000Z"
+        },
+        "desk": "Fake Article",
+        "rights": [
+            {
+                "copyright-holder": "copyright-holder",
+                "copyright-notice": "copyright-notice",
+                "use-allowed-from-date": "use-allowed-from-date",
+                "use-allowed-to-date": "use-allowed-to-date"
+            }
+        ],
+        "location": [
+            {
+                "name": "london",
+                "uri": "www.telegraph.co.uk/london"
+            }
+        ],
+        "annotations": [
+            {
+                "name": "article",
+                "uri": "www.telegraph.co.uk/article"
+            }
+        ],
+        "extensions": [
+            {
+                "key": "uri",
+                "value": "http://www.telegraph.co.uk/test/fake/article2"
+            }
+        ]
+    },
+    "content": {
+        "headline": "Fake Headline",
+        "byline": "By Fake Author",
+        "authors": [
+            {
+                "name": "Fake Author",
+                "uri": "wwww.telegraph.co.uk/fake/author",
+                "role": "Fake Journalist",
+                "location": "somewhere"
+            }
+        ],
+        "body": [
+            {
+                "data": "first paragraph",
+                "html-data": "<p>first paragraph</p>",
+                "type": "text"
+            },
+            {
+                "data": "http://www.telegraph.co.uk/first/image.jpeg",
+                "alt-text": "first-image-alt-text",
+                "credit": "",
+                "caption": "First Image",
+                "html-caption": "<p>first paragraph</p>",
+                "type": "image"
+            }
+        ],
+        "gallery":[],
+        "reviews":[],
+        "livestream":[]
+    }
+}

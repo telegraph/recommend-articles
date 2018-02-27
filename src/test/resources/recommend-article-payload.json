@@ -1,0 +1,12 @@
+{
+    "sort" : "-score",
+    "limit" : 10,
+    "offset" : 0,
+    "query-filters" : {
+    },
+    "query-object" : {
+        "channel" : "News",
+        "headline": "Fake Article",
+        "body"    : "Fake Article body"
+    }
+}
