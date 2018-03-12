@@ -30,5 +30,17 @@
     {
         "ParameterKey": "BuildVersion",
         "ParameterValue": "1.0.0"
+    },
+    {
+        "ParameterKey"  : "ELBCertArn",
+        "ParameterValue": "arn:aws:acm:eu-west-1:130692012581:certificate/e9ed0a84-dc6b-43f4-b4a2-d976ddc2d370"
+    },
+    {
+        "ParameterKey"  : "ELBSecurityGroups",
+        "ParameterValue": "sg-4346b93a,sg-709aea0b,sg-d488dfaf"
+    },
+    {
+        "ParameterKey"  : "PublicSubnetList",
+        "ParameterValue": "subnet-23d38a7b,subnet-bd1b07d9,subnet-0db1ac7b"
     }
 ]

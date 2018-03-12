@@ -62,8 +62,20 @@
         },
         "EcrAwsAccountID": {
             "Description": "AWS Account ID of Docker ECR repo",
-            "Type": "String",
-            "Default": "385050320367"
+            "Type"       : "String",
+            "Default"    : "385050320367"
+        },
+        "ELBCertArn":{
+            "Description": "ARN certificate for Load Balancer based on DNS ${ApplicationName}-${DeploymentEnv}.${DNSZone}",
+            "Type"       : "String"
+        },
+        "ELBSecurityGroups": {
+            "Description": "List of security groups for the load balancer. TMGBase, APIGee, Cluster.",
+            "Type"       : "String"
+        },
+        "PublicSubnetList": {
+            "Description": "Public Subnet List",
+            "Type"       : "String"
         }
     },
     "Resources" : {
@@ -76,13 +88,23 @@
                 "StackName": { "Ref": "EnvECSClusterStack" }
             }
         },
-        "ECSLoadBalancer":{
-            "Type": "Custom::StackDependency",
+        "ECSLoadBalancerPublic":{
+            "Type": "AWS::CloudFormation::Stack",
             "Properties": {
-                "ServiceToken": { "Fn::Join": ["",[
-                    "arn:aws:lambda:", {"Ref":"AWS::Region"}, ":", {"Ref":"AWS::AccountId"}, ":function:aws-resources-load-balancer-priority"
-                ]]},
-                "StackName": { "Ref": "EnvECSClusterStack" }
+                "TemplateURL"  : {"Fn::Sub": ["https://s3-${AWS::Region}.amazonaws.com/${bucket}/${bucketKey}/${version}/cloudformation/dynamic/template-alb-public.json", {
+                    "bucket"   : {"Ref": "CloudFormationBucket"},
+                    "bucketKey": {"Ref": "ApplicationName"},
+                    "version"  : {"Ref": "BuildVersion"}
+                }]},
+                "Parameters":{
+                    "ApplicationName"  : {"Ref": "ApplicationName"},
+                    "DeploymentEnv"    : {"Ref": "DeploymentEnv"},
+                    "ELBSecurityGroups": {"Ref": "ELBSecurityGroups"},
+                    "VpcId"            : {"Ref": "VpcId"},
+                    "PublicSubnetList" : {"Ref": "PublicSubnetList"},
+                    "ELBCertArn"       : {"Ref": "ELBCertArn"},
+                    "ContainerPort"    : "9000"
+                }
             }
         },
         "ECSService": {
@@ -104,8 +126,8 @@
 
                     "VpcId"                       : {"Ref": "VpcId"},
                     "ECSClusterPhysicalId"        : {"Fn::GetAtt":["ECSCluster", "EnvironmentECSClusterID"]},
-                    "ECSLoadBalancerListener"     : {"Fn::GetAtt":["ECSCluster", "EnvironmentECSLoadBalancerListenerID"]},
-                    "LoadBalancerListenerPriority": {"Fn::GetAtt":["ECSLoadBalancer", "NextPriorityAvailable"]},
+                    "ECSLoadBalancerListener"     : {"Fn::GetAtt":["ECSLoadBalancerPublic", "Outputs.ListenerId"]},
+                    "LoadBalancerListenerPriority": "100",
                     "ContainerPort"               : "9000",
                     "DeploymentConfigMaxPercent"  : "200",
                     "DeploymentConfigMinPercent"  : "50",
@@ -115,7 +137,8 @@
                 "TimeoutInMinutes": "15"
             },
             "DependsOn": [
-                "ECSServiceTaskRole"
+                "ECSServiceTaskRole",
+                "ECSLoadBalancerPublic"
             ]
         },
 
@@ -203,9 +226,6 @@
         },
         "VpcId" : {
             "Value" : {"Ref" : "VpcId" }
-        },
-        "LoadBalancerListenerPriority":{
-            "Value" : {"Fn::GetAtt":["ECSLoadBalancer", "NextPriorityAvailable"]}
         }
     }
 }

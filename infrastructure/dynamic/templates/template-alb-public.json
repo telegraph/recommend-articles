@@ -1,0 +1,142 @@
+{
+    "AWSTemplateFormatVersion" : "2010-09-09",
+    "Description" : "AWS CloudFormation to launch a service.",
+    "Parameters" : {
+        "ApplicationName": {
+            "Description": "The application name",
+            "Type": "String"
+        },
+        "DeploymentEnv": {
+            "Description": "The environment to refer to this component stack",
+            "Type"       : "String"
+        },
+        "ELBSecurityGroups": {
+            "Description": "List of security groups for the load balancer. TMGBase, APIGee, Cluster.",
+            "Type": "List<AWS::EC2::SecurityGroup::Id>"
+        },
+        "VpcId": {
+            "Description": "Vpc Id",
+            "Type"       : "String"
+        },
+        "PublicSubnetList": {
+            "Description": "Public Subnet List",
+            "Type"       : "CommaDelimitedList"
+        },
+        "ELBCertArn":{
+            "Description": "ARN certificate for Load Balancer based on DNS ${ApplicationName}-${DeploymentEnv}.${DNSZone}",
+            "Type"       : "String"
+        },
+        "BillingTag":{
+            "Description": "Billing Tag for AWS Resources",
+            "Type"       : "String",
+            "Default"    : "platforms"
+        },
+        "ProjectTag":{
+            "Description": "Project Tag for AWS Resources",
+            "Type"       : "String",
+            "Default"    : "newsroom"
+        },
+        "HealthEndpoint": {
+            "Description": "Health endpoint",
+            "Type": "String",
+            "Default": "/health"
+        },
+        "HealthCheckIntervalSeconds": {
+            "Description": "Set the HealthCheck Interval in seconds",
+            "Type": "String",
+            "Default": "10"
+        },
+        "HealthCheckTimeoutSeconds": {
+            "Description": "Set the HealthCheck Timeout in seconds",
+            "Type": "String",
+            "Default": "9"
+        },
+        "HealthyThresholdCount": {
+            "Description": "The number of consecutive successful health checks that are required before an unhealthy target is considered healthy.",
+            "Type": "String",
+            "Default": "3"
+        },
+        "UnhealthyThresholdCount": {
+            "Description": "The number of consecutive failed health checks that are required before a target is considered unhealthy.",
+            "Type": "String",
+            "Default": "2"
+        },
+        "DeregistrationDelay": {
+            "Description": "The amount time for Load Balancing to wait before changing the state of a deregistering target from draining to unused",
+            "Type": "String",
+            "Default": "300"
+        },
+        "ContainerPort": {
+            "Description": "Container port. If using host networking mode, this will be exposed on the host",
+            "Type"       : "String",
+            "Default"    : "8080"
+        }
+    },
+    "Resources": {
+        "AppLoadBalancer": {
+            "Type": "AWS::ElasticLoadBalancingV2::LoadBalancer",
+            "Properties":{
+                "LoadBalancerAttributes": [
+                    {"Key": "idle_timeout.timeout_seconds", "Value": 301}
+                ],
+                "Scheme"        : "internet-facing",
+                "SecurityGroups": {"Ref": "ELBSecurityGroups"},
+                "Subnets"       : {"Ref": "PublicSubnetList"},
+                "Tags"          : [
+                    {"Key": "Billing", "Value": {"Ref":"BillingTag"}},
+                    {"Key": "Project", "Value": {"Ref":"ProjectTag"}},
+                    {"Key": "Name",    "Value": {"Fn::Sub":["${appName}-${appEnv}", {
+                        "appName": {"Ref": "ApplicationName"},
+                        "appEnv" : {"Ref": "DeploymentEnv"}
+                    }]}}
+                ],
+            }
+        },
+        "AppLoadBalancerHttpsListener":{
+            "Type": "AWS::ElasticLoadBalancingV2::Listener",
+            "Properties": {
+                "DefaultActions" : [{
+                    "Type"          : "forward",
+                    "TargetGroupArn": {"Ref":"AppLoadBalancerTargetGroup"}
+                }],
+                "LoadBalancerArn": {"Ref":"AppLoadBalancer"},
+                "Port"           : 443,
+                "Protocol"       : "HTTPS",
+                "Certificates"   : [{
+                    "CertificateArn": {"Ref": "ELBCertArn"}
+                }]
+            }
+        },
+        "AppLoadBalancerTargetGroup": {
+            "Type": "AWS::ElasticLoadBalancingV2::TargetGroup",
+            "Properties": {
+                "HealthCheckPath"           : {"Ref": "HealthEndpoint"},
+                "HealthCheckProtocol"       : "HTTP",
+                "HealthCheckIntervalSeconds": {"Ref": "HealthCheckIntervalSeconds"},
+                "HealthCheckTimeoutSeconds" : {"Ref": "HealthCheckTimeoutSeconds"},
+                "HealthyThresholdCount"     : {"Ref": "HealthyThresholdCount"},
+                "UnhealthyThresholdCount"   : {"Ref": "UnhealthyThresholdCount"},
+                "Protocol"                  : "HTTP",
+                "Port"                      : {"Ref": "ContainerPort"},
+                "VpcId"                     : {"Ref": "VpcId"},
+                "TargetGroupAttributes": [{
+                    "Key"  : "deregistration_delay.timeout_seconds",
+                    "Value": {"Ref": "DeregistrationDelay"}
+                }],
+                "Tags"          : [
+                    {"Key": "Billing", "Value": {"Ref":"BillingTag"}},
+                    {"Key": "Project", "Value": {"Ref":"ProjectTag"}},
+                    {"Key": "Name",    "Value": {"Fn::Sub":["${appName}-${appEnv}", {
+                        "appName": {"Ref": "ApplicationName"},
+                        "appEnv" : {"Ref": "DeploymentEnv"}
+                    }]}}
+                ]
+            }
+        }
+    },
+    "Outputs": {
+        "ListenerId": {
+            "Value": {"Ref": "AppLoadBalancerHttpsListener"}
+        }
+    }
+}
