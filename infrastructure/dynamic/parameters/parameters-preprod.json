@@ -24,11 +24,39 @@
         "ParameterValue": "cluster-preprod"
     },
     {
+        "ParameterKey"  : "EnvAlbPublicStack",
+        "ParameterValue": "public-alb-preprod"
+    },
+    {
         "ParameterKey": "VpcId",
         "ParameterValue": "vpc-871019e3"
     },
     {
         "ParameterKey": "BuildVersion",
         "ParameterValue": "1.0.0"
+    },
+    {
+        "ParameterKey"  : "DnsZone",
+        "ParameterValue": "api-platforms-preprod.telegraph.co.uk."
+    },
+    {
+        "ParameterKey"  : "CertificateArn",
+        "ParameterValue": "arn:aws:acm:eu-west-1:130692012581:certificate/e9ed0a84-dc6b-43f4-b4a2-d976ddc2d370"
+    },
+    {
+        "ParameterKey"  : "PublicSecurityGroups",
+        "ParameterValue": "sg-4346b93a,sg-709aea0b,sg-27a5ec5e"
+    },
+    {
+        "ParameterKey"  : "PrivateSecurityGroups",
+        "ParameterValue": "sg-4346b93a,sg-27a5ec5e"
+    },
+    {
+        "ParameterKey"  : "PublicSubnetList",
+        "ParameterValue": "subnet-23d38a7b,subnet-bd1b07d9,subnet-0db1ac7b"
+    },
+    {
+        "ParameterKey"  : "PrivateSubnetList",
+        "ParameterValue": "subnet-21d38a79,subnet-0cb1ac7a,subnet-be1b07da"
     }
 ]

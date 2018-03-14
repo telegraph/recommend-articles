@@ -24,11 +24,43 @@
         "ParameterValue": "cluster-prod"
     },
     {
+        "ParameterKey"  : "EnvAlbPublicStack",
+        "ParameterValue": "public-alb-prod"
+    },
+    {
         "ParameterKey": "VpcId",
         "ParameterValue": "vpc-96cd1bf2"
     },
     {
         "ParameterKey": "BuildVersion",
         "ParameterValue": "1.0.0"
+    },
+    {
+        "ParameterKey"  : "DnsZone",
+        "ParameterValue": "api-platforms.telegraph.co.uk."
+    },
+    {
+        "ParameterKey"  : "CertificateArn",
+        "ParameterValue": "arn:aws:acm:eu-west-1:385050320367:certificate/2865cc46-d694-42ce-887a-71041a4105310"
+    },
+    {
+        "ParameterKey"  : "PublicSecurityGroups",
+        "ParameterValue": "sg-951180f2,sg-245a195e,sg-754ed913"
+    },
+    {
+        "ParameterKey"  : "PrivateSecurityGroups",
+        "ParameterValue": "sg-951180f2,sg-754ed913"
+    },
+    {
+        "ParameterKey"  : "PublicSubnetList",
+        "ParameterValue": "subnet-a36fcdd5,subnet-a920dcf1,subnet-81823de5"
+    },
+    {
+        "ParameterKey"  : "PrivateSubnetList",
+        "ParameterValue": "subnet-80823de4,subnet-bb20dce3,subnet-a46fcdd2"
+    },
+    {
+        "ParameterKey": "EmailingList",
+        "ParameterValue": "arn:aws:sns:eu-west-1:385050320367:platforms"
     }
 ]
