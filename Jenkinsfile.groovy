@@ -112,15 +112,6 @@ ansiColor('xterm') {
             }
 
             stage("Validate prod deploy") {
-                echo "Is code freeze: ${env.CODE_FREEZE}"
-                if (env.CODE_FREEZE == 'true') {
-                    echo "Freeze!"
-                    currentBuild.result = 'ABORTED'
-                    error('There is a code freeze')
-                } else {
-                    echo "NO Freeze - Deploying to prod!"
-                }
-
                 timeout(time: 60, unit: 'MINUTES') {
 
                     current_commit = sh(returnStdout: true, script: 'git show-ref --tags --head --hash| head -n1').trim()

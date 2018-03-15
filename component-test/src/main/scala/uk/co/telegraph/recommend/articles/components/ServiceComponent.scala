@@ -5,6 +5,12 @@ import uk.co.telegraph.recommend.articles.utils._
 
 object ServiceComponent extends Component("app") {
 
+  def whenCallDocumentation(format: String):Response = {
+    given()
+      .queryParam("format", format)
+      .get("/swagger")
+  }
+
   def whenCallHealthEndpoint(): Response = {
     given()
       .queryParam("cached", "false")
@@ -15,6 +21,6 @@ object ServiceComponent extends Component("app") {
     given()
       .body(fromPayload(payload))
       .contentType("application/json")
-      .post("/by-article/")
+      .post("/recommend-articles/by-article/")
   }
 }

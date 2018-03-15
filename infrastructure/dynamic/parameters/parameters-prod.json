@@ -24,10 +24,6 @@
         "ParameterValue": "cluster-prod"
     },
     {
-        "ParameterKey"  : "EnvAlbPublicStack",
-        "ParameterValue": "public-alb-prod"
-    },
-    {
         "ParameterKey": "VpcId",
         "ParameterValue": "vpc-96cd1bf2"
     },
@@ -58,6 +54,14 @@
     {
         "ParameterKey"  : "PrivateSubnetList",
         "ParameterValue": "subnet-80823de4,subnet-bb20dce3,subnet-a46fcdd2"
+    },
+    {
+        "ParameterKey"  : "WafRefererClusterIPRuleId",
+        "ParameterValue": "436e5c12-4c6a-4de6-bc83-87e98a00ea47"
+    },
+    {
+        "ParameterKey"  : "WafRefererTmgIPRuleId",
+        "ParameterValue": "e855d757-e83d-4709-997d-d85f870bfda4"
     },
     {
         "ParameterKey": "EmailingList",

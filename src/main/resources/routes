@@ -3,10 +3,10 @@
 # ~~~~
 
 # Generic Endpoints
-GET  /health                                          uk.co.telegraph.utils.server.routes.HealthEndpoints.internalHealth
-GET  /recommend-articles/health                       uk.co.telegraph.utils.server.routes.HealthEndpoints.externalHealth(cached: Boolean ?= true)
-GET  /recommend-articles/admin                        uk.co.telegraph.utils.server.routes.AdminEndpoints.getConfig
-GET  /recommend-articles/swagger.json                 controllers.ApiHelpController.getResources
+GET  /health          uk.co.telegraph.utils.server.routes.HealthEndpoints.internalHealth
+GET  /health/detailed uk.co.telegraph.utils.server.routes.HealthEndpoints.externalHealth(cached: Boolean ?= true)
+GET  /admin           uk.co.telegraph.utils.server.routes.AdminEndpoints.getConfig
+GET  /swagger         uk.co.telegraph.recommend.articles.routes.SwaggerRoute.swaggerDoc()
 
 # Service endpoints
-POST /recommend-articles/by-article/                  uk.co.telegraph.recommend.articles.routes.ArticleRoute.recommendArticles()
+POST /recommend-articles/by-article/ uk.co.telegraph.recommend.articles.routes.ArticleRoute.recommendArticles()

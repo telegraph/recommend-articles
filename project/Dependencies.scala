@@ -20,6 +20,7 @@ object Dependencies {
 
       "com.typesafe.play"            %%  "play"                         % PlayVersion,
       "com.typesafe.play"            %%  "play-guice"                   % PlayVersion,
+      "org.yaml"                     %   "snakeyaml"                    % "1.20",
       "com.amazonaws"                %   "aws-java-sdk-kms"             % AwsSdkVersion  excludeAll ExclusionRule("commons-logging", "commons-logging"),
 
       // Test dependencies

@@ -80,6 +80,14 @@ Parameters:
     AllowedValues:
       - false
       - true
+  WafRefererClusterIPRuleId:
+    Description: WAF Rule to allow ClusterIP Rule Ids
+    Type: String
+    Default: ''
+  WafRefererTmgIPRuleId:
+    Description: WAF Rule to allow TmgIP Rule Ids
+    Type: String
+    Default: ''
 
 Conditions:
   IsEcsPublic: !Equals [true, !Ref IsPublic]
@@ -112,6 +120,8 @@ Resources:
         SecurityGroups: !If [IsEcsPublic, !Ref PrivateSecurityGroups, !Ref PrivateSecurityGroups]
         SubnetList: !If [IsEcsPublic, !Ref PublicSubnetList, !Ref PrivateSubnetList]
         IsECSServicePublic: !Ref IsPublic
+        WafRefererClusterIPRuleId: !Ref WafRefererClusterIPRuleId
+        WafRefererTmgIPRuleId: !Ref WafRefererTmgIPRuleId
 
         ECSClusterPhysicalId: !GetAtt ECSCluster.EnvironmentECSClusterID
         ContainerPort: 9000
