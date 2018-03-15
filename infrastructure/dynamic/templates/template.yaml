@@ -35,9 +35,6 @@ Parameters:
   EnvECSClusterStack:
     Description: ECS Cluster Repository
     Type: String
-  EnvAlbPublicStack:
-    Description: Alb Public Stack
-    Type: String
   VpcId:
     Description: Application VPC
     Type: String
