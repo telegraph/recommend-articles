@@ -14,7 +14,7 @@ object ServiceComponent extends Component("app") {
   def whenCallHealthEndpoint(): Response = {
     given()
       .queryParam("cached", "false")
-      .get("/health")
+      .get("/health/detailed")
   }
 
   def whenCallRecommendArticleFor(payload:String):Response = {
