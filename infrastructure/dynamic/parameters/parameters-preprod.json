@@ -41,7 +41,7 @@
     },
     {
         "ParameterKey"  : "PublicSecurityGroups",
-        "ParameterValue": "sg-4346b93a,sg-709aea0b,sg-27a5ec5e"
+        "ParameterValue": "sg-4346b93a,sg-27a5ec5e,sg-709aea0b"
     },
     {
         "ParameterKey"  : "PrivateSecurityGroups",

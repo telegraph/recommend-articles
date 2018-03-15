@@ -37,7 +37,7 @@
     },
     {
         "ParameterKey"  : "CertificateArn",
-        "ParameterValue": "arn:aws:acm:eu-west-1:385050320367:certificate/2865cc46-d694-42ce-887a-71041a4105310"
+        "ParameterValue": "arn:aws:acm:eu-west-1:385050320367:certificate/2865cc46-d694-42ce-887a-71041a410531"
     },
     {
         "ParameterKey"  : "PublicSecurityGroups",

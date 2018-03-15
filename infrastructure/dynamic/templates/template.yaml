@@ -114,7 +114,7 @@ Resources:
         VpcId: !Ref VpcId
         DnsZone: !Ref DnsZone
         CertificateArn: !Ref CertificateArn
-        SecurityGroups: !If [IsEcsPublic, !Ref PrivateSecurityGroups, !Ref PrivateSecurityGroups]
+        SecurityGroups: !If [IsEcsPublic, !Ref PublicSecurityGroups, !Ref PrivateSecurityGroups]
         SubnetList: !If [IsEcsPublic, !Ref PublicSubnetList, !Ref PrivateSubnetList]
         IsECSServicePublic: !Ref IsPublic
         WafRefererClusterIPRuleId: !Ref WafRefererClusterIPRuleId

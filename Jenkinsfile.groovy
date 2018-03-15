@@ -120,16 +120,15 @@ ansiColor('xterm') {
                     authors = sh(returnStdout: true, script: """git log --full-diff $previous_release_tag..$current_commit | grep -o 'Author: .*' | sed -e 's/Author: //g' | sort -u | uniq""").trim()
 
                     sendMessage(
-                            "The *$projectName* pipeline is waiting to be approved for prod deployment:\n${env.BUILD_URL}/input" +
-                                    "\nTicket in this release:\n$tickets" +
-                                    "\nCoded by:\n$authors",
-                            "#platforms_releases"
+                        "The *$projectName* pipeline is waiting to be approved for prod deployment:\n${env.BUILD_URL}/input" +
+                        "\nTicket in this release:\n$tickets" +
+                        "\nCoded by:\n$authors", "#platforms_releases"
                     )
                     approver = input(message: 'Approve deployment?', submitterParameter: 'username_approval')
                     date = new Date()
                     sendMessage(
-                            "The *$projectName* build: ${env.BUILD_URL} has been approved by https://jenkins-prod.api-platforms.telegraph.co.uk/user/${approver}/ at ${date}",
-                            "#platforms_releases"
+                    "The *$projectName* build: ${env.BUILD_URL} has been approved by https://jenkins-prod.api-platforms.telegraph.co.uk/user/${approver}/ at ${date}",
+                    "#platforms_releases"
                     )
                 }
             }
