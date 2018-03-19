@@ -9,4 +9,5 @@ GET  /admin           uk.co.telegraph.utils.server.routes.AdminEndpoints.getConf
 GET  /swagger         uk.co.telegraph.recommend.articles.routes.SwaggerRoute.swaggerDoc(format:String ?= "yaml")
 
 # Service endpoints
+GET  /recommend-articles/health      uk.co.telegraph.utils.server.routes.HealthEndpoints.externalHealth(cached: Boolean ?= true)
 POST /recommend-articles/by-article/ uk.co.telegraph.recommend.articles.routes.ArticleRoute.recommendArticles()
