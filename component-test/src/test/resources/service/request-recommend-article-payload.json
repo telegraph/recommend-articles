@@ -7,6 +7,6 @@
     "query-object" : {
         "channel" : "News",
         "headline": "Fake Article",
-        "body"    : "Fake Article body"
+        "body"    : "Fake Article body - This body is for test purposes only and should not be used in production"
     }
 }
