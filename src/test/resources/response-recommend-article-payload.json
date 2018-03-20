@@ -7,7 +7,8 @@
             "type": "article",
             "headline": "Fake, \"Headline's\"",
             "pubdate": "2017-01-01T12:00:00.000Z",
-            "source": "1",
+            "channel": "news",
+            "source": "tmg",
             "authors": [
                 "Fake Author"
             ]
@@ -17,8 +18,9 @@
             "score": 0.8,
             "type": "article",
             "headline": "Fake Headline",
-            "pubdate": "2017-01-01T12:00:00.000Z",
-            "source": "2",
+            "pubdate": "2016-01-01T12:00:00.000Z",
+            "channel": "sports",
+            "source": "pa",
             "authors": [
                 "Fake Author"
             ]

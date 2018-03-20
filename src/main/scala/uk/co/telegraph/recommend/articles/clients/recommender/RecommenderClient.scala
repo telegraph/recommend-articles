@@ -10,6 +10,7 @@ import akka.stream.scaladsl.{Flow, Source}
 import org.json4s.{DefaultFormats, Formats}
 import uk.co.telegraph.recommend.articles.clients.recommender.RecommenderClient.GetRecommendationException
 import uk.co.telegraph.recommend.articles.clients.recommender.model.{RecommenderRequest, RecommenderResponse}
+import uk.co.telegraph.recommend.articles.utils
 import uk.co.telegraph.utils.client.GenericClient
 import uk.co.telegraph.utils.client.exceptions.ClientException
 import uk.co.telegraph.utils.client.http.impl.HttpClient
@@ -28,7 +29,7 @@ trait HttpRecommenderClient
 {
   import Json4sSupport._
   import system.dispatcher
-  private lazy implicit val formats:Formats = DefaultFormats
+  private lazy implicit val formats:Formats = DefaultFormats + utils.dateTimeSerializer
 
   override lazy val getRecommendationFor:Flow[RecommenderRequest, RecommenderResponse, NotUsed] = Flow[RecommenderRequest]
     .flatMapConcat( request => {

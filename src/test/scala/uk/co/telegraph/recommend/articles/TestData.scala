@@ -13,6 +13,7 @@ import org.json4s.{DefaultFormats, Formats}
 import uk.co.telegraph.recommend.articles.clients.recommender.RecommenderClient
 import uk.co.telegraph.recommend.articles.clients.recommender.model.{RecommenderItem, RecommenderRequest, RecommenderResponse}
 import uk.co.telegraph.recommend.articles.clients.storage.StorageClient
+import uk.co.telegraph.recommend.articles.models._
 import uk.co.telegraph.recommend.articles.routes.models._
 import uk.co.telegraph.recommend.articles.utils._
 import uk.co.telegraph.ucm.domain.enrich.UnifiedEnrichContentModel
@@ -27,9 +28,9 @@ trait TestData {
     UnifiedEnrichContentModel.serializers
 
   val testDefaultConfig    : Config        = ConfigFactory.load("application.tst.conf")
-  val sampleLocalDateTime  : LocalDateTime = LocalDateTime.ofEpochSecond(1483228800, 0, ZoneOffset.UTC)
+  val sampleLocalDateTime  : LocalDateTime = LocalDateTime.ofEpochSecond(1483272000, 0, ZoneOffset.UTC)
   val sampleZoneDateTime   : ZonedDateTime = ZonedDateTime.of(sampleLocalDateTime, ZoneId.of("UTC"))
-  val sampleZoneDateTimeStr: String        = sampleZoneDateTime.format(zonedDateTimeFormatter)
+  val sampleZoneDateTimeStr: String        = sampleZoneDateTime
   val sampleContentId1     : String        = "11111111-1111-1111-1111-111111111111"
   val sampleContentId2     : String        = "22222222-2222-2222-2222-222222222222"
 
@@ -42,9 +43,9 @@ trait TestData {
       `tmg-created-date`      = sampleZoneDateTime,
       `tmg-last-modified-date`= sampleZoneDateTime,
       source                  = Some(MetadataSource(
-        `original-source`    = "Test",
+        `original-source`    = "tmg",
         `original-feed-name` = "Fake",
-        `source-id`          = "1",
+        `source-id`          = "tmg",
         `created-date`       = Some(sampleZoneDateTime)
       )),
       desk                    = Some("Fake Article"),
@@ -69,6 +70,10 @@ trait TestData {
         )
       ),
       extensions              = Seq(
+        MetadataExtension(
+          key   = "channel",
+          value = "news"
+        ),
         MetadataExtension(
           key   = "uri",
           value = "http://www.telegraph.co.uk/test/fake/article1"
@@ -109,13 +114,13 @@ trait TestData {
       `type`                  = ContentModelEnum.Article,
       premium                 = false,
       language                = "en-GB",
-      `tmg-created-date`      = sampleZoneDateTime,
-      `tmg-last-modified-date`= sampleZoneDateTime,
+      `tmg-created-date`      = "2016-01-01T12:00:00.000Z",
+      `tmg-last-modified-date`= "2016-01-01T12:00:00.000Z",
       source                  = Some(MetadataSource(
-        `original-source`    = "Test",
+        `original-source`    = "pa",
         `original-feed-name` = "Fake",
-        `source-id`          = "2",
-        `created-date`       = Some(sampleZoneDateTime)
+        `source-id`          = "pa",
+        `created-date`       = Some("2016-01-01T12:00:00.000Z")
       )),
       desk                    = Some("Fake Article"),
       rights                  = Seq(
@@ -139,6 +144,10 @@ trait TestData {
         )
       ),
       extensions              = Seq(
+        MetadataExtension(
+          key   = "channel",
+          value = "sports"
+        ),
         MetadataExtension(
           key   = "uri",
           value = "http://www.telegraph.co.uk/test/fake/article2"
@@ -178,59 +187,147 @@ trait TestData {
   val sampleContentItems = Seq(sampleContentObj1, sampleContentObj2)
 
   val sampleRecommenderRequest = RecommenderRequest(
-    channel = "News",
-    headline= "Fake Article",
-    body    = "fake article body"
+    channel = Some("News"),
+    headline= Some("Fake Article"),
+    body    = "Fake Article body - This body is for test purposes only and should not be used in production"
   )
   val sampleRecommenderResponse = RecommenderResponse(
-    `result-count`= 2,
-    data          = Seq(
-      RecommenderItem( sampleContentId1, 0.9),
-      RecommenderItem( sampleContentId2, 0.8)
+    `results-count`= 2,
+    data           = Seq(
+      RecommenderItem( sampleContentId1, 0.9, "2017-01-01T12:00:00.000Z"),
+      RecommenderItem( sampleContentId2, 0.8, "2016-01-01T12:00:00.000Z")
     )
   )
 
-  val sampleRecommendArticleRequest = RecommendArticleRequest(
-    sort = Sort( field = "score", order = SortOrderEnum.asc),
+  val sampleRecommendArticle = RecommendArticles(
+    sort           = Sort("score", SortOrderEnum.asc),
     limit          = 10,
     offset         = 0,
-    `query-filters`= RecommendArticleQueryFilter(
-      source     = Set(),
-      `date-from`= None,
-      `date-to`  = None,
-      channel    = None
+    queryFilter    = QueryFilter(
+      source       = ArticleSource.All,
+      dateFrom     = None,
+      dateTo       = None,
+      channel      = ArticleChannel.All
     ),
-    `query-object` = RecommendArticleQueryObject(
-      channel  = "News",
-      headline = "Fake Article",
-      body     = "Fake Article body"
+    queryObject    = QueryObject(
+      channel      = Some("News"),
+      headline     = Some("Fake Article"),
+      body         = "Fake Article body - This body is for test purposes only and should not be used in production"
     )
   )
-  val sampleRecommendArticleResult = RecommendArticleResult( Seq(
-    RecommendArticleItem(
-      id       = sampleContentId1,
-      score    = 0.9,
-      `type`   = "article",
-      headline = "Fake, \"Headline's\"",
-      url      = None,
-      thumbnail= None,
-      pubdate  = Some(sampleZoneDateTimeStr),
-      channel  = None,
-      source   = "1",
-      authors  = Seq("Fake Author")
+
+  val sampleRecommendArticleWithDateRange = RecommendArticles(
+    sort           = Sort("score", SortOrderEnum.asc),
+    limit          = 10,
+    offset         = 0,
+    queryFilter    = QueryFilter(
+      source       = ArticleSource.All,
+      dateFrom     = Some("2017-01-01T11:00:00.000Z"),
+      dateTo       = Some("2017-01-01T13:00:00.000Z"),
+      channel      = ArticleChannel.All
     ),
-    RecommendArticleItem(
-      id       = sampleContentId2,
-      score    = 0.8,
-      `type`   = "article",
-      headline = "Fake Headline",
-      url      = None,
-      thumbnail= None,
-      pubdate  = Some(sampleZoneDateTimeStr),
-      channel  = None,
-      source   = "2",
-      authors  = Seq("Fake Author")
+    queryObject    = QueryObject(
+      channel      = Some("News"),
+      headline     = Some("Fake Article"),
+      body         = "Fake Article body - This body is for test purposes only and should not be used in production"
     )
+  )
+
+  val sampleRecommendArticleWithOffsetAndLimit = RecommendArticles(
+    sort           = Sort("score", SortOrderEnum.asc),
+    limit          = 1,
+    offset         = 1,
+    queryFilter    = QueryFilter(
+      source       = ArticleSource.All,
+      dateFrom     = None,
+      dateTo       = None,
+      channel      = ArticleChannel.All
+    ),
+    queryObject    = QueryObject(
+      channel      = Some("News"),
+      headline     = Some("Fake Article"),
+      body         = "Fake Article body - This body is for test purposes only and should not be used in production"
+    )
+  )
+
+  val sampleRecommendArticleWithSource = RecommendArticles(
+    sort           = Sort("score", SortOrderEnum.asc),
+    limit          = 10,
+    offset         = 0,
+    queryFilter    = QueryFilter(
+      source       = ArticleSource.Only(Seq("tmg")),
+      dateFrom     = None,
+      dateTo       = None,
+      channel      = ArticleChannel.All
+    ),
+    queryObject    = QueryObject(
+      channel      = Some("News"),
+      headline     = Some("Fake Article"),
+      body         = "Fake Article body - This body is for test purposes only and should not be used in production"
+    )
+  )
+
+  val sampleRecommendArticleWithChannel = RecommendArticles(
+    sort           = Sort("score", SortOrderEnum.asc),
+    limit          = 10,
+    offset         = 0,
+    queryFilter    = QueryFilter(
+      source       = ArticleSource.All,
+      dateFrom     = None,
+      dateTo       = None,
+      channel      = ArticleChannel.Only(Seq("news"))
+    ),
+    queryObject    = QueryObject(
+      channel      = Some("News"),
+      headline     = Some("Fake Article"),
+      body         = "Fake Article body - This body is for test purposes only and should not be used in production"
+    )
+  )
+
+  val sampleRecommendArticleRequest = RecommendArticlesRequest(
+    sort           = "+score",
+    limit          = 10,
+    offset         = 0,
+    `query-filters`= RecommendArticlesQueryFilter(
+      source       = Set(),
+      `date-from`  = None,
+      `date-to`    = None,
+      channel      = Set()
+    ),
+    `query-object` = RecommendArticlesQueryObject(
+      channel      = Some("News"),
+      headline     = Some("Fake Article"),
+      body         = "Fake Article body - This body is for test purposes only and should not be used in production"
+    )
+  )
+  val sampleRecommendArticle_1 = RecommendArticleItem(
+    id       = sampleContentId1,
+    score    = 0.9,
+    `type`   = "article",
+    headline = "Fake, \"Headline's\"",
+    url      = None,
+    thumbnail= None,
+    pubdate  = Some(sampleZoneDateTimeStr),
+    channel  = Some("news"),
+    source   = "tmg",
+    authors  = Seq("Fake Author")
+  )
+  val sampleRecommendArticle_2 = RecommendArticleItem(
+    id       = sampleContentId2,
+    score    = 0.8,
+    `type`   = "article",
+    headline = "Fake Headline",
+    url      = None,
+    thumbnail= None,
+    pubdate  = Some("2016-01-01T12:00:00.000Z"),
+    channel  = Some("sports"),
+    source   = "pa",
+    authors  = Seq("Fake Author")
+  )
+
+  val sampleRecommendArticleResult = RecommendArticleResult(Seq(
+    sampleRecommendArticle_1,
+    sampleRecommendArticle_2
   ))
 
   val sampleException  = new RuntimeException("Fake Exception")
@@ -277,14 +374,13 @@ trait TestDataRecommenderClient extends TestData {
 
   val sampleGetRecommendationsForRequest = RequestBuilding.Post(
     s"$baseUrl/article",
-    HttpEntity(`application/json`, s"""{"channel":"News","headline":"Fake Article","body":"fake article body"}""")
+    HttpEntity(`application/json`, s"""{"fields":["content-id","score","weight","date-published"],"channel":"News","headline":"Fake Article","body":"Fake Article body - This body is for test purposes only and should not be used in production"}""")
   )
   val sampleRecommendationResponse = HttpResponse(
     status = OK,
-    entity = HttpEntity(`application/json`, """{"result-count":2,"data":[{"content-id":"11111111-1111-1111-1111-111111111111","score":0.9}, {"content-id":"22222222-2222-2222-2222-222222222222","score":0.8}]}""")
+    entity = HttpEntity(`application/json`, """{"results-count":2,"data":[{"content-id":"11111111-1111-1111-1111-111111111111","score":0.9,"date-published":"2017-01-01T12:00:00.000Z"}, {"content-id":"22222222-2222-2222-2222-222222222222","score":0.8,"date-published":"2016-01-01T12:00:00.000Z"}]}""")
   )
   val sampleInvalidResponse = HttpResponse(status = InternalServerError)
-
 }
 
 object TestData extends TestData

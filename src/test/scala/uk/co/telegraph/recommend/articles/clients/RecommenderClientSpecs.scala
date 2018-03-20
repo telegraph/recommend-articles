@@ -29,7 +29,7 @@ class RecommenderClientSpecs
 
     "when invoked 'getRecommendationFor'" - {
       "it should return recommendations" in {
-        HttpConnectorMock.doRequest _ when sampleGetRecommendationsForRequest returns sampleRecommendationResponse once()
+        HttpConnectorMock.doRequest _ when withRequestMatching(sampleGetRecommendationsForRequest) returns sampleRecommendationResponse once()
 
         val (pub, sub) = TestSource.probe[RecommenderRequest]
           .via(client.getRecommendationFor)
@@ -37,10 +37,12 @@ class RecommenderClientSpecs
           .run()
 
         sub.request(1)
-        pub.sendNext(sampleRecommenderRequest)
-        pub.sendComplete()
-        sub.expectNext(sampleRecommenderResponse)
-        sub.expectComplete()
+        pub
+          .sendNext(sampleRecommenderRequest)
+          .sendComplete()
+        sub
+          .expectNext(sampleRecommenderResponse)
+          .expectComplete()
       }
 
       "it should skip failed items" in {
@@ -53,8 +55,8 @@ class RecommenderClientSpecs
 
         sub.request(1)
         pub.sendNext(sampleRecommenderRequest)
-        pub.sendComplete()
         sub.expectError() shouldBe a [GetRecommendationException]
+        pub.expectCancellation()
       }
     }
   }

@@ -40,7 +40,7 @@ class ArticleRouteSpecs
       .withBody    (sampleRecommendArticleRequest)
 
     "should be able to get recommendations" in {
-      mockRecommendedArticleFlow.getRecommendationFor _ when sampleRecommendArticleRequest returns successful(sampleRecommendArticleResult)
+      mockRecommendedArticleFlow.getRecommendationFor _ when sampleRecommendArticle returns successful(sampleRecommendArticleResult)
 
       val result = endpoint.recommendArticles()(request)
       status         (result)(timeout) shouldBe Status.OK

@@ -10,6 +10,7 @@ import uk.co.telegraph.recommend.articles.clients.recommender.RecommenderClient
 import uk.co.telegraph.recommend.articles.clients.recommender.model.{RecommenderRequest, RecommenderResponse}
 import uk.co.telegraph.recommend.articles.clients.storage.StorageClient
 import uk.co.telegraph.recommend.articles.clients.storage.StorageClient.ContentId
+import uk.co.telegraph.recommend.articles.routes.models.RecommendArticleResult
 import uk.co.telegraph.recommend.articles.{TestContext, TestData}
 import uk.co.telegraph.ucm.domain.UnifiedContentModel
 import uk.co.telegraph.utils.client.models.ClientDetails
@@ -47,12 +48,50 @@ class RecommendArticleFlowSpecs
   )
 
   "Given the 'RecommendArticleFlow'" - {
-    "it should be possible to get recommendations" in {
-      mockRecommenderClientFunc.apply _ when sampleRecommenderRequest returns sampleRecommenderResponse once()
-      mockStorageClientFunc.apply _ when sampleContentIds returns Seq(sampleContentObj1, sampleContentObj2) once()
+    "it should be possible to get recommendations" - {
+      "without applying any filter" in {
+        mockRecommenderClientFunc.apply _ when sampleRecommenderRequest returns sampleRecommenderResponse once()
+        mockStorageClientFunc.apply     _ when sampleContentIds         returns Seq(sampleContentObj1, sampleContentObj2) once()
 
-      whenReady(recommenderFlow.getRecommendationFor(sampleRecommendArticleRequest)){ res =>
-        res shouldBe sampleRecommendArticleResult
+        whenReady(recommenderFlow.getRecommendationFor(sampleRecommendArticle)){ res =>
+          res shouldBe sampleRecommendArticleResult
+        }
+      }
+
+      "filtering by range date" in {
+        mockRecommenderClientFunc.apply _ when sampleRecommenderRequest returns sampleRecommenderResponse once()
+        mockStorageClientFunc.apply     _ when Set(sampleContentId1)    returns Seq(sampleContentObj1)    once()
+
+        whenReady(recommenderFlow.getRecommendationFor(sampleRecommendArticleWithDateRange)){ res =>
+          res shouldBe RecommendArticleResult(Seq(sampleRecommendArticle_1))
+        }
+      }
+
+      "filtering with offset and limit" in {
+        mockRecommenderClientFunc.apply _ when sampleRecommenderRequest returns sampleRecommenderResponse once()
+        mockStorageClientFunc.apply     _ when sampleContentIds         returns Seq(sampleContentObj1, sampleContentObj2) once()
+
+        whenReady(recommenderFlow.getRecommendationFor(sampleRecommendArticleWithOffsetAndLimit)){ res =>
+          res shouldBe RecommendArticleResult(Seq(sampleRecommendArticle_2))
+        }
+      }
+
+      "filtering by Source" in {
+        mockRecommenderClientFunc.apply _ when sampleRecommenderRequest returns sampleRecommenderResponse once()
+        mockStorageClientFunc.apply     _ when sampleContentIds         returns Seq(sampleContentObj1, sampleContentObj2) once()
+
+        whenReady(recommenderFlow.getRecommendationFor(sampleRecommendArticleWithSource)){ res =>
+          res shouldBe RecommendArticleResult(Seq(sampleRecommendArticle_1))
+        }
+      }
+
+      "filtering by Channel" in {
+        mockRecommenderClientFunc.apply _ when sampleRecommenderRequest returns sampleRecommenderResponse once()
+        mockStorageClientFunc.apply     _ when sampleContentIds         returns Seq(sampleContentObj1, sampleContentObj2) once()
+
+        whenReady(recommenderFlow.getRecommendationFor(sampleRecommendArticleWithChannel)){ res =>
+          res shouldBe RecommendArticleResult(Seq(sampleRecommendArticle_1))
+        }
       }
     }
 
@@ -60,7 +99,7 @@ class RecommendArticleFlowSpecs
       "the storage client fails" in {
         mockRecommenderClientFunc.apply _ when sampleRecommenderRequest throws sampleException once()
 
-        whenReady(recommenderFlow.getRecommendationFor(sampleRecommendArticleRequest).failed){ ex =>
+        whenReady(recommenderFlow.getRecommendationFor(sampleRecommendArticle).failed){ ex =>
           ex shouldBe sampleException
         }
       }
@@ -69,7 +108,7 @@ class RecommendArticleFlowSpecs
         mockRecommenderClientFunc.apply _ when sampleRecommenderRequest returns sampleRecommenderResponse once()
         mockStorageClientFunc.apply _ when sampleContentIds throws sampleException once()
 
-        whenReady(recommenderFlow.getRecommendationFor(sampleRecommendArticleRequest).failed){ ex =>
+        whenReady(recommenderFlow.getRecommendationFor(sampleRecommendArticle).failed){ ex =>
           ex shouldBe sampleException
         }
       }
