@@ -21,6 +21,6 @@ object ServiceComponent extends Component("app") {
     given()
       .body(fromPayload(payload))
       .contentType("application/json")
-      .post("/recommend-articles/by-article/")
+      .post("/recommend-articles/by-article")
   }
 }
