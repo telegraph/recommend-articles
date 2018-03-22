@@ -1,4 +1,7 @@
 {
+    "query-filters" : {
+        "source": ["tmg"]
+    },
     "query-object" : {
         "channel" : "News",
         "headline": "Fake Article",

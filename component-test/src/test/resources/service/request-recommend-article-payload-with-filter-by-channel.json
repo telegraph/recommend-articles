@@ -1,4 +1,7 @@
 {
+    "query-filters" : {
+        "channel": ["sports"]
+    },
     "query-object" : {
         "channel" : "News",
         "headline": "Fake Article",

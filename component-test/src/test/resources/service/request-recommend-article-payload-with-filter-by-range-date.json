@@ -1,4 +1,8 @@
 {
+    "query-filters" : {
+        "date-from": "2017-01-01T00:00:00.000Z",
+        "date-to"  : "2018-01-01T00:00:00.000Z"
+    },
     "query-object" : {
         "channel" : "News",
         "headline": "Fake Article",

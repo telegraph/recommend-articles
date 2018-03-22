@@ -12,6 +12,6 @@ case class RecommenderItem
 
 case class RecommenderResponse
 (
-  `results-count`: Int,
-  data           : Seq[RecommenderItem]
+  `result-count`: Int,
+  data          : Seq[RecommenderItem]
 )

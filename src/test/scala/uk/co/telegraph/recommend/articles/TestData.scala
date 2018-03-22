@@ -192,7 +192,7 @@ trait TestData {
     body    = "Fake Article body - This body is for test purposes only and should not be used in production"
   )
   val sampleRecommenderResponse = RecommenderResponse(
-    `results-count`= 2,
+    `result-count`= 2,
     data           = Seq(
       RecommenderItem( sampleContentId1, 0.9, "2017-01-01T12:00:00.000Z"),
       RecommenderItem( sampleContentId2, 0.8, "2016-01-01T12:00:00.000Z")
@@ -378,7 +378,7 @@ trait TestDataRecommenderClient extends TestData {
   )
   val sampleRecommendationResponse = HttpResponse(
     status = OK,
-    entity = HttpEntity(`application/json`, """{"results-count":2,"data":[{"content-id":"11111111-1111-1111-1111-111111111111","score":0.9,"date-published":"2017-01-01T12:00:00.000Z"}, {"content-id":"22222222-2222-2222-2222-222222222222","score":0.8,"date-published":"2016-01-01T12:00:00.000Z"}]}""")
+    entity = HttpEntity(`application/json`, """{"result-count":2,"data":[{"content-id":"11111111-1111-1111-1111-111111111111","score":0.9,"date-published":"2017-01-01T12:00:00.000Z"}, {"content-id":"22222222-2222-2222-2222-222222222222","score":0.8,"date-published":"2016-01-01T12:00:00.000Z"}]}""")
   )
   val sampleInvalidResponse = HttpResponse(status = InternalServerError)
 }

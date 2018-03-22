@@ -1,4 +1,5 @@
 {
+    "offset": -1,
     "query-object" : {
         "channel" : "News",
         "headline": "Fake Article",

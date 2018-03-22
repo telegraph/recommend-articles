@@ -4,13 +4,13 @@
         "type": "article",
         "premium": false,
         "language": "en-GB",
-        "tmg-created-date": "2017-01-01T00:00:00.000Z",
-        "tmg-last-modified-date": "2017-01-01T00:00:00.000Z",
+        "tmg-created-date": "2017-01-01T12:00:00.000Z",
+        "tmg-last-modified-date": "2017-01-01T12:00:00.000Z",
         "source": {
-            "original-source": "Test",
+            "original-source": "tmg",
             "original-feed-name": "Fake",
-            "source-id": "1",
-            "created-date": "2017-01-01T00:00:00.000Z"
+            "source-id": "tmg",
+            "created-date": "2017-01-01T12:00:00.000Z"
         },
         "desk": "Fake Article",
         "rights": [
@@ -34,6 +34,10 @@
             }
         ],
         "extensions": [
+            {
+                "key": "channel",
+                "value": "news"
+            },
             {
                 "key": "uri",
                 "value": "http://www.telegraph.co.uk/test/fake/article1"

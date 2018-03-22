@@ -1,0 +1,7 @@
+{
+    "query-object" : {
+        "channel" : "News",
+        "headline": "Fake Article",
+        "body"    : "Fake Article body"
+    }
+}
