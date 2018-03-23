@@ -63,10 +63,10 @@ class RecommendArticleFlowImpl( private val storageClient: StorageClient, val re
 
   private def checkIncludedRange(fromOpt:Option[ZonedDateTime], toOpt:Option[ZonedDateTime]): RecommenderItem => Boolean = {
     item => {
-      val fromDate = fromOpt.getOrElse(item.`date-published`)
-      val toDate   = toOpt  .getOrElse(item.`date-published`)
+      val fromDate = fromOpt.getOrElse(item.`date-last-modified`)
+      val toDate   = toOpt  .getOrElse(item.`date-last-modified`)
 
-      !(fromDate.isAfter(item.`date-published`) || toDate.isBefore(item.`date-published`))
+      !(fromDate.isAfter(item.`date-last-modified`) || toDate.isBefore(item.`date-last-modified`))
     }
   }
 

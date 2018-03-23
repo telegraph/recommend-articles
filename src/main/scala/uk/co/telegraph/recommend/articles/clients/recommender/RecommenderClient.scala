@@ -35,6 +35,9 @@ trait HttpRecommenderClient
     .flatMapConcat( request => {
       Source.single( toHttpRequest(request) )
         .via(httpClientFlow.filterByStatus(OK).unmarshalTo[RecommenderResponse])
+        .map(x => {
+          x
+        })
         .mapError({
           case ex:Throwable =>
             GetRecommendationException(s"Failed to get recommendation for request $request", ex)
