@@ -112,25 +112,25 @@ ansiColor('xterm') {
             }
 
             stage("Validate prod deploy") {
-                timeout(time: 60, unit: 'MINUTES') {
-
-                    current_commit = sh(returnStdout: true, script: 'git show-ref --tags --head --hash| head -n1').trim()
-                    previous_release_tag = sh(returnStdout: true, script: 'git show-ref --tags --head | sort -V -k2,2 | tail -n1 | cut -d " " -f1').trim()
-                    tickets = sh(returnStdout: true, script: """git log --full-diff $previous_release_tag..$current_commit | grep -o 'PLAT-[0-9]*'| sort -u | uniq |awk '{print "https://jira.aws.telegraph.co.uk/browse/"\$1}'""").trim()
-                    authors = sh(returnStdout: true, script: """git log --full-diff $previous_release_tag..$current_commit | grep -o 'Author: .*' | sed -e 's/Author: //g' | sort -u | uniq""").trim()
-
-                    sendMessage(
-                        "The *$projectName* pipeline is waiting to be approved for prod deployment:\n${env.BUILD_URL}/input" +
-                        "\nTicket in this release:\n$tickets" +
-                        "\nCoded by:\n$authors", "#platforms_releases"
-                    )
-                    approver = input(message: 'Approve deployment?', submitterParameter: 'username_approval')
-                    date = new Date()
-                    sendMessage(
-                    "The *$projectName* build: ${env.BUILD_URL} has been approved by https://jenkins-prod.api-platforms.telegraph.co.uk/user/${approver}/ at ${date}",
-                    "#platforms_releases"
-                    )
-                }
+//                timeout(time: 60, unit: 'MINUTES') {
+//
+//                    current_commit = sh(returnStdout: true, script: 'git show-ref --tags --head --hash| head -n1').trim()
+//                    previous_release_tag = sh(returnStdout: true, script: 'git show-ref --tags --head | sort -V -k2,2 | tail -n1 | cut -d " " -f1').trim()
+//                    tickets = sh(returnStdout: true, script: """git log --full-diff $previous_release_tag..$current_commit | grep -o 'PLAT-[0-9]*'| sort -u | uniq |awk '{print "https://jira.aws.telegraph.co.uk/browse/"\$1}'""").trim()
+//                    authors = sh(returnStdout: true, script: """git log --full-diff $previous_release_tag..$current_commit | grep -o 'Author: .*' | sed -e 's/Author: //g' | sort -u | uniq""").trim()
+//
+//                    sendMessage(
+//                        "The *$projectName* pipeline is waiting to be approved for prod deployment:\n${env.BUILD_URL}/input" +
+//                        "\nTicket in this release:\n$tickets" +
+//                        "\nCoded by:\n$authors", "#platforms_releases"
+//                    )
+//                    approver = input(message: 'Approve deployment?', submitterParameter: 'username_approval')
+//                    date = new Date()
+//                    sendMessage(
+//                    "The *$projectName* build: ${env.BUILD_URL} has been approved by https://jenkins-prod.api-platforms.telegraph.co.uk/user/${approver}/ at ${date}",
+//                    "#platforms_releases"
+//                    )
+//                }
             }
 
             stage("Prod Deploy"){
