@@ -9,7 +9,7 @@ object ArticleChannel {
   def apply(sources:Set[String]): ArticleChannel = {
     sources.map(_.toLowerCase).toList match {
       case "all" :: _ | Nil => All
-      case only             => Only(only)
+      case only             => Only(only.map(_.toLowerCase))
     }
   }
 }

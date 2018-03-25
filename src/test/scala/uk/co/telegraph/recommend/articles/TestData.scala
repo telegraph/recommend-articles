@@ -43,8 +43,8 @@ trait TestData {
       `tmg-created-date`      = sampleZoneDateTime,
       `tmg-last-modified-date`= sampleZoneDateTime,
       source                  = Some(MetadataSource(
-        `original-source`    = "tmg",
-        `original-feed-name` = "Fake",
+        `original-source`    = "Telegraph",
+        `original-feed-name` = "AEM",
         `source-id`          = "tmg",
         `created-date`       = Some(sampleZoneDateTime)
       )),
@@ -117,8 +117,8 @@ trait TestData {
       `tmg-created-date`      = "2016-01-01T12:00:00.000Z",
       `tmg-last-modified-date`= "2016-01-01T12:00:00.000Z",
       source                  = Some(MetadataSource(
-        `original-source`    = "pa",
-        `original-feed-name` = "Fake",
+        `original-source`    = "PA",
+        `original-feed-name` = "PA",
         `source-id`          = "pa",
         `created-date`       = Some("2016-01-01T12:00:00.000Z")
       )),
@@ -255,7 +255,7 @@ trait TestData {
     limit          = 10,
     offset         = 0,
     queryFilter    = QueryFilter(
-      source       = ArticleSource.Only(Seq("tmg")),
+      source       = ArticleSource.Only(Seq("aem")),
       dateFrom     = None,
       dateTo       = None,
       channel      = ArticleChannel.All
@@ -309,7 +309,7 @@ trait TestData {
     thumbnail= None,
     pubdate  = Some(sampleZoneDateTimeStr),
     channel  = Some("news"),
-    source   = "tmg",
+    source   = "AEM",
     authors  = Seq("Fake Author")
   )
   val sampleRecommendArticle_2 = RecommendArticleItem(
@@ -321,7 +321,7 @@ trait TestData {
     thumbnail= None,
     pubdate  = Some("2016-01-01T12:00:00.000Z"),
     channel  = Some("sports"),
-    source   = "pa",
+    source   = "PA",
     authors  = Seq("Fake Author")
   )
 

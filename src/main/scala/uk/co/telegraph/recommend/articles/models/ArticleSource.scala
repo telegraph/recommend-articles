@@ -9,7 +9,7 @@ object ArticleSource {
   def apply(sources:Set[String]): ArticleSource = {
     sources.map(_.toLowerCase).toList match {
       case "all" :: _ | Nil => All
-      case only             => Only(only)
+      case only             => Only(only.map(_.toLowerCase))
     }
   }
 }

@@ -73,14 +73,14 @@ class RecommendArticleFlowImpl( private val storageClient: StorageClient, val re
   private def checkIncludesSource(articleSources: ArticleSource): RecommendArticleItem => Boolean = {
     articleSources match {
       case ArticleSource.All           => _ => true
-      case ArticleSource.Only(sources) => item => sources.contains(item.source)
+      case ArticleSource.Only(sources) => item => sources.contains(item.source.toLowerCase)
     }
   }
 
   private def checkIncludesChannel(articleChannel: ArticleChannel): RecommendArticleItem => Boolean = {
     articleChannel match {
       case ArticleChannel.All            => _ => true
-      case ArticleChannel.Only(channels) => item => item.channel.exists(channels.contains(_))
+      case ArticleChannel.Only(channels) => item => item.channel.map(_.toLowerCase).exists(channels.contains(_))
     }
   }
 }
@@ -108,7 +108,7 @@ object RecommendArticleFlow{
       channel   = ucmModel.metadata.extensions.collectFirst({
         case MetadataExtension("channel", channel) => channel
       }),
-      source    = ucmModel.metadata.source.map(_.`source-id`).getOrElse("unknown"),
+      source    = ucmModel.metadata.source.map(_.`original-feed-name`).getOrElse("unknown"),
       authors   = ucmModel.content.authors.map(_.name)
     )
   }

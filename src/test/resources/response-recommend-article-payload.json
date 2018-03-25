@@ -8,7 +8,7 @@
             "headline": "Fake, \"Headline's\"",
             "pubdate": "2017-01-01T12:00:00.000Z",
             "channel": "news",
-            "source": "tmg",
+            "source": "AEM",
             "authors": [
                 "Fake Author"
             ]
@@ -20,7 +20,7 @@
             "headline": "Fake Headline",
             "pubdate": "2016-01-01T12:00:00.000Z",
             "channel": "sports",
-            "source": "pa",
+            "source": "PA",
             "authors": [
                 "Fake Author"
             ]

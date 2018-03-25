@@ -1,7 +1,5 @@
 package uk.co.telegraph.recommend.articles.routes.models
 
-import io.swagger.annotations.{ApiModel, ApiModelProperty}
-
 case class RecommendArticleItem
 (
   id       : String,

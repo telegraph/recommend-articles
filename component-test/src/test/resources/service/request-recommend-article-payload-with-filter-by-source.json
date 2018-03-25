@@ -1,6 +1,6 @@
 {
     "query-filters" : {
-        "source": ["tmg"]
+        "source": ["aem"]
     },
     "query-object" : {
         "channel" : "News",
