@@ -9,6 +9,6 @@ case class RecommenderRequest
 )
 
 object RecommenderRequest {
-  val defaultFields:Seq[String] = Seq("content-id", "score", "weight", "date-published")
+  val defaultFields:Seq[String] = Seq("content-id", "score", "weight", "date-last-modified")
 
 }

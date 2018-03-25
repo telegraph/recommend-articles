@@ -374,7 +374,7 @@ trait TestDataRecommenderClient extends TestData {
 
   val sampleGetRecommendationsForRequest = RequestBuilding.Post(
     s"$baseUrl/article",
-    HttpEntity(`application/json`, s"""{"fields":["content-id","score","weight","date-published"],"channel":"News","headline":"Fake Article","body":"Fake Article body - This body is for test purposes only and should not be used in production"}""")
+    HttpEntity(`application/json`, s"""{"fields":["content-id","score","weight","date-last-modified"],"channel":"News","headline":"Fake Article","body":"Fake Article body - This body is for test purposes only and should not be used in production"}""")
   )
   val sampleRecommendationResponse = HttpResponse(
     status = OK,
