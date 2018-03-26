@@ -27,7 +27,7 @@ Parameters:
   NotificationTaskMemoryAllocation:
     Description: Memory allocation of notification the task
     Type: String
-    Default: 2048
+    Default: 4096
   NotificationDesiredCount:
     Description: Desired count of the notification task
     Type: String
