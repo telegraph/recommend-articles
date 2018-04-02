@@ -47,11 +47,14 @@ lazy val ct = (project in file("component-test"))
         }.getOrElse(default)
       }
 
-      Map(
+      val variables = Map(
         "SERVICE_PORT"     -> queryDockerInstancePort("service",    9000, "9000"),
-        "ENGINE_API_PORT"  -> queryDockerInstancePort("engine-api", 8080),
+        "ENGINE_API_PORT"  -> queryDockerInstancePort("engine-api", 8081),
         "STORAGE_PORT"     -> queryDockerInstancePort("storage",    8080)
       )
+      println("Environment Variables:")
+      println(variables)
+      variables
     },
     fork                      := true,
     parallelExecution in Test := false,

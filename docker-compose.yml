@@ -15,13 +15,13 @@ services:
   engine-api:
     build: .
     image: "385050320367.dkr.ecr.eu-west-1.amazonaws.com/wiremock-swagger/validator"
-    command: "--swagger-url=\"https://raw.githubusercontent.com/telegraph/platforms-swagger-specs/master/newsroom/recommend-articles-engine-api.yaml\" --verbose"
+    command: "--swagger-url=\"https://raw.githubusercontent.com/telegraph/platforms-swagger-specs/master/newsroom/recommend-articles-engine-api.yaml\" --verbose --port 8081"
     volumes:
     - ./component-test/src/test/resources/recommender:/home/wiremock
     ports:
-    - "8080"
+    - "8081"
     expose:
-    - "8080"
+    - "8081"
   storage:
     image: "385050320367.dkr.ecr.eu-west-1.amazonaws.com/wiremock-swagger/validator"
     command: "--extensions=org.wiremock.extensions.swagger.SwaggerValidationExtension --verbose"
