@@ -9,7 +9,7 @@ services:
     image: "${APP_NAME}:${APP_VERSION}"
     depends_on:
       - storage
-      - recommend-articles-engine-api
+      - engine-api
     ports:
       - "9000"
   engine-api:
