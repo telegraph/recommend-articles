@@ -1,0 +1,14 @@
+{
+    "priority": "100",
+    "request": {
+        "urlPath": "/ucm-storage-service/content/22222222-2222-2222-2222-222222222222",
+        "method": "GET"
+    },
+    "response":{
+        "status" : 200,
+        "bodyFileName": "content-22222222-2222-2222-2222-222222222222.json",
+        "headers": {
+            "Content-Type": "application/json"
+        }
+    }
+}

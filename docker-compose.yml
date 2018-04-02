@@ -8,11 +8,25 @@ services:
       - DOCKERPORT=8080
     image: "${APP_NAME}:${APP_VERSION}"
     depends_on:
-      - mock
+      - storage
+      - recommend-articles-engine-api
     ports:
       - "9000"
-  mock:
-    image: "rodolpheche/wiremock:2.14.0-alpine"
+  engine-api:
+    build: .
+    image: "385050320367.dkr.ecr.eu-west-1.amazonaws.com/wiremock-swagger/validator"
+    command: "--swagger-url=\"https://raw.githubusercontent.com/telegraph/platforms-swagger-specs/master/newsroom/recommend-articles-engine-api.yaml\" --verbose"
+    volumes:
+    - ./component-test/src/test/resources/recommender:/home/wiremock
+    ports:
+    - "8080"
+    expose:
+    - "8080"
+  storage:
+    image: "385050320367.dkr.ecr.eu-west-1.amazonaws.com/wiremock-swagger/validator"
+    command: "--extensions=org.wiremock.extensions.swagger.SwaggerValidationExtension --verbose"
+    volumes:
+    - ./component-test/src/test/resources/storage:/home/wiremock
     ports:
       - "8080"
     expose:

@@ -18,25 +18,11 @@ abstract class StorageComponent extends Component("storage") {
 object StorageComponentCt extends StorageComponent with WiremockSupport{
   override def setup(): Unit = {
     teardown()
-
-    get(urlPathEqualTo("/ucm-storage-service/health"))
-      .willReplyWithStatusCode(200)
-
-    get(urlPathEqualTo("/ucm-storage-service/content/11111111-1111-1111-1111-111111111111"))
-      .willReplyWithResponse(aResponse()
-        .withHeader("Content-Type", "application/json")
-        .withBody(fromPayload("/storage/payload-content1.json"))
-      )
-
-    get(urlPathEqualTo("/ucm-storage-service/content/22222222-2222-2222-2222-222222222222"))
-      .willReplyWithResponse(aResponse()
-        .withHeader("Content-Type", "application/json")
-        .withBody(fromPayload("/storage/payload-content2.json"))
-      )
   }
 
   override def setInvalidContentId(contentId:String): Unit = {
     get(urlPathEqualTo(s"/ucm-storage-service/content/$contentId"))
+      .atPriority(1)
       .willReplyWithStatusCode(404)
   }
 

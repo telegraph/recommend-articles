@@ -14,9 +14,9 @@ trait ComponentTest
   //noinspection TypeAnnotation
   val serviceComponent = ServiceComponent
   val (storageComponent, recommenderComponent) = { if(componentTestMode)
-      (StorageComponentCt, RecommenderComponentCt)
+      (StorageComponentCt, RecommenderEngineComponentCt)
     else
-      (StorageComponentIt, RecommenderComponentIt)
+      (StorageComponentIt, RecommenderEngineComponentIt)
   }
 
   val ctTag  : Tag = Tag("ct")

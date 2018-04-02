@@ -1,0 +1,8 @@
+{
+    "name": "ucm-storage-service",
+    "version": "1.0.0-SNAPSHOT",
+    "status": "Healthy",
+    "cached": false,
+    "clients": [
+    ]
+}

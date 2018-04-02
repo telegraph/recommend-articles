@@ -4,33 +4,36 @@ import com.github.tomakehurst.wiremock.client.WireMock.{aResponse, any, stubFor,
 import com.github.tomakehurst.wiremock.client.{MappingBuilder, ResponseDefinitionBuilder, WireMock}
 import com.github.tomakehurst.wiremock.matching._
 import com.github.tomakehurst.wiremock.stubbing._
-import uk.co.telegraph.recommend.articles.environment.environmentConfig
+import uk.co.telegraph.recommend.articles.components.Component
 import uk.co.telegraph.recommend.articles.utils.WiremockSupport._
 
 import scala.concurrent.duration.FiniteDuration
 import scala.language.implicitConversions
 
-trait WiremockSupport {
+trait WiremockSupport { this: Component =>
 
-  private val host :String = "localhost"
-  private val port :Int    = queryDockerPort("docker-compose port mock 8080")
-    .getOrElse(environmentConfig.getInt("mock.port"))
+  private val host :String = config.getString("host")
+  private val port :Int    = config.getInt("port")
 
-  WireMock.configureFor(host, port)
+  wiremockConfig()
   WireMock.reset()
+
+  def wiremockConfig(): Unit ={
+    WireMock.configureFor(host, port)
+  }
 
   def proxyAll(urlPattern:String, toEndpoint:String)(implicit priority:Int = lowPriority):StubMapping = {
     any(urlMatching(urlPattern)).atPriority(priority).proxyTo(toEndpoint)
   }
 
   implicit def toMappingBuilderExtensions(left: MappingBuilder):MappingBuilderExtensions =
-    MappingBuilderExtensions(left)
+    MappingBuilderExtensions(left, this)
 }
 
 object WiremockSupport{
 
   val lowPriority = 10
-  case class MappingBuilderExtensions(left:MappingBuilder){
+  case class MappingBuilderExtensions(left:MappingBuilder, wiremockSupport: WiremockSupport){
     def willReplyWithStatusCode(status:Int): StubMapping = {
       left.willReturn(aResponse().withStatus(status))
     }
@@ -52,6 +55,7 @@ object WiremockSupport{
     }
 
     private implicit def toStubFor(mappingBuilder: MappingBuilder):StubMapping = {
+      wiremockSupport.wiremockConfig()
       stubFor(mappingBuilder)
     }
   }

@@ -48,8 +48,9 @@ lazy val ct = (project in file("component-test"))
       }
 
       Map(
-        "SERVICE_PORT"  -> queryDockerInstancePort("service", 9000, "9000"),
-        "WIREMOCK_PORT" -> queryDockerInstancePort("mock",    8080)
+        "SERVICE_PORT"     -> queryDockerInstancePort("service",    9000, "9000"),
+        "ENGINE_API_PORT"  -> queryDockerInstancePort("engine-api", 8080),
+        "STORAGE_PORT"     -> queryDockerInstancePort("storage",    8080)
       )
     },
     fork                      := true,
