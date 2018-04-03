@@ -18,7 +18,6 @@ class RecommendArticleSpecs extends ComponentTest
     scenario("should return article recommendations", ctTag) {
       serviceComponent.whenCallRecommendArticleFor("/service/request-recommend-article-payload.json")
         .Then()
-        .log().all()
         .statusCode(200)
         .header("Content-Type", "application/json")
         .body  ("result-count", Matchers.equalTo(2))
@@ -28,7 +27,6 @@ class RecommendArticleSpecs extends ComponentTest
     scenario("should return article recommendations when specifying the limits and offset", ctTag) {
       serviceComponent.whenCallRecommendArticleFor("/service/request-recommend-article-payload-with-offset-and-limit.json")
       .Then()
-        .log().all()
         .statusCode(200)
         .header("Content-Type", "application/json")
         .body  ("result-count", Matchers.equalTo(1))
@@ -75,25 +73,25 @@ class RecommendArticleSpecs extends ComponentTest
     scenario("should fail if the limit is 0", ctAndIt:_*){
       serviceComponent.whenCallRecommendArticleFor("/service/request-recommend-article-payload-invalid-limit.json")
         .Then()
-        .statusCode(500)
+        .statusCode(400)
     }
 
     scenario("should fail if the offset is -1", ctAndIt:_*){
       serviceComponent.whenCallRecommendArticleFor("/service/request-recommend-article-payload-invalid-offset.json")
         .Then()
-        .statusCode(500)
+        .statusCode(400)
     }
 
     scenario("should fail if invalid range date", ctAndIt:_*){
       serviceComponent.whenCallRecommendArticleFor("/service/request-recommend-article-payload-invalid-range-date.json")
         .Then()
-        .statusCode(500)
+        .statusCode(400)
     }
 
     scenario("should fail if invalid body length < 50", ctAndIt:_*){
       serviceComponent.whenCallRecommendArticleFor("/service/request-recommend-article-payload-invalid-body-length.json")
         .Then()
-        .statusCode(500)
+        .statusCode(400)
     }
   }
 }

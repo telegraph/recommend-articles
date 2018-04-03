@@ -1,7 +1,5 @@
 package uk.co.telegraph.recommend.articles.routes.models
 
-import io.swagger.annotations.{ApiModel, ApiModelProperty}
-
 case class FailureCause
 (
   message: String,
@@ -25,6 +23,7 @@ object FailureResponse{
     val causes = Iterator.iterate(exception.getCause)(_.getCause)
       .takeWhile(Option(_).nonEmpty)
       .map      ( toFailureCause )
+      .filter   ( _.message != null)
       .toList
 
     FailureResponse(

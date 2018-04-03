@@ -33,11 +33,12 @@ object Dependencies {
 
   val ComponentTests: Seq[Setting[_]] = Seq(
     libraryDependencies ++= Seq(
-      "org.scalatest"                 %%  "scalatest"               % ScalaTestVersion,
-      "io.rest-assured"               %   "scala-support"           % "3.0.6",
-      "com.github.tomakehurst"        %   "wiremock"                % "2.14.0",
-      "org.json4s"                    %%  "json4s-native"           % Json4sVersion,
-      "com.typesafe"                  %   "config"                  % "1.3.1"
+      "org.scalatest"                 %%  "scalatest"                             % ScalaTestVersion,
+      "io.rest-assured"               %   "scala-support"                         % "3.0.6",
+      "com.atlassian.oai"             %   "swagger-request-validator-restassured" % "1.3.10",
+      "com.github.tomakehurst"        %   "wiremock"                              % "2.14.0",
+      "org.json4s"                    %%  "json4s-native"                         % Json4sVersion,
+      "com.typesafe"                  %   "config"                                % "1.3.1"
     )
   )
 }

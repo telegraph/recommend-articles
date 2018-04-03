@@ -58,6 +58,7 @@ ansiColor('xterm') {
 
             stage("Assembly"){
                 sh """
+                    curl https://raw.githubusercontent.com/telegraph/platforms-swagger-specs/master/newsroom/recommend-articles.yaml -o src/main/resources/swagger.yaml
                     ${sbtFolder}/sbt clean playUpdateSecret assembly
                 """
                 docker.build("${projectName}:${pipeline_version}", "--build-arg APP_NAME=${projectName} --build-arg APP_VERSION=${pipeline_version} .")
