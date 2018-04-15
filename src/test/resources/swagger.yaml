@@ -1,0 +1,99 @@
+swagger: '2.0'
+info:
+  description: TMG Recommender API definition
+  version: '0.1'
+  title: TMG Recommender
+  termsOfService: ''
+  contact:
+    email: richard.spence@telegraph.co.uk
+basePath: /v1
+schemes:
+  - http
+  - https
+paths:
+  /swagger:
+    get:
+      summary: Get Service documentation
+      description: Get Service documentation
+      produces:
+        - text/yaml
+        - application/json
+      parameters:
+        - name: format
+          type: string
+          in: query
+          enum:
+            - json
+            - yaml
+          default: yaml
+      responses:
+        200:
+          description: success
+  /health/detailed:
+    get:
+      summary: Get detailed health
+      description: Get Service documentation
+      produces:
+        - application/json
+      responses:
+        200:
+          description: success
+          schema:
+            $ref: '#/definitions/def-health-response'
+definitions:
+  client-error:
+    type: object
+    required:
+    - status
+    properties:
+      status:
+        $ref: '#/definitions/error-status'
+  service-error:
+    $ref: '#/definitions/client-error'
+  error-status:
+    type: object
+    required:
+      - statusCode
+      - message
+    properties:
+      statusCode:
+        type: integer
+        format: int32
+        example: 400
+      appErrorCode:
+        type: integer
+        format: int32
+        example: 1000
+      message:
+        type: string
+        example: >-
+          No usable value for query-object
+  def-health-response:
+    type: object
+    properties:
+      name:
+        type: string
+        example: "application-x"
+      version:
+        type: string
+        example: "1.0.0-SNAPSHOT"
+      status:
+        type: string
+        example: "healthy"
+      cached:
+        type: boolean
+        example: true
+      clients:
+        type: array
+        items:
+          type: object
+          example:
+            name: "client-A"
+            status: 200
+            date-time: 1523610633
+            date-time-str: "2018-04-13T09:10:33.791+00:00"
+            config:
+              baseUrl: "https://client-A.api-telegraph.co.uk"
+              health.method: "GET"
+              health.path: "/health"
+            command: "curl -XGET https://client-A.api-telegraph.co.uk/health -v"

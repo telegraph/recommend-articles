@@ -1,5 +1,7 @@
 package uk.co.telegraph.recommend.articles.routes.error
 
+import java.lang.reflect.InvocationTargetException
+
 import javax.inject.Singleton
 import org.json4s.{DefaultFormats, Formats, MappingException}
 import play.api.Logger
@@ -18,9 +20,13 @@ class CustomErrorHandler extends HttpErrorHandler with Json4sWriter {
 
   override def onServerError(request: RequestHeader, ex: Throwable): Future[Result] = {
     Future.successful(
-      ex match {
+      extractInvocationTargetException(ex) match {
         case ex @ (_:IllegalArgumentException | _:MappingException)=>
-          val response = FailureResponse(ex)
+          val response = FailureResponse(
+            statusCode   = 400,
+            appErrorCode = 1000,
+            message      = ex.getMessage
+          )
           Logger.error(s"Returning Error: '${ex.getMessage}'. Response: $response.", ex)
           BadRequest(response)
         case ex:Throwable =>
@@ -31,9 +37,16 @@ class CustomErrorHandler extends HttpErrorHandler with Json4sWriter {
     )
   }
 
+  private def extractInvocationTargetException(ex:Throwable):Throwable = {
+    Option(ex.getCause).collect({ case ex:InvocationTargetException => ex.getTargetException }).getOrElse(ex)
+  }
   override def onClientError(request: RequestHeader, statusCode: Int, message: String): Future[Result] = {
     Future.successful(
-      Status(statusCode)(FailureResponse(message, "", Seq()))
+      Status(statusCode)(FailureResponse(
+        statusCode = statusCode,
+        appErrorCode = 1000 + statusCode,
+        message = message
+      ))
     )
   }
 }

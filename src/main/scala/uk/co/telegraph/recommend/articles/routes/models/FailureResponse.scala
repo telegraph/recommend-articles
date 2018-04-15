@@ -1,35 +1,36 @@
 package uk.co.telegraph.recommend.articles.routes.models
 
-case class FailureCause
+case class FailureResponseStatus
 (
-  message: String,
-  error  : String
+  statusCode  : Int,
+  appErrorCode: Int,
+  message     : String
 )
 
 case class FailureResponse
 (
-  message: String,
-  error  : String,
-  causes : Seq[FailureCause]
+  status: FailureResponseStatus
 )
 
 object FailureResponse{
 
-  private def toFailureCause(ex:Throwable):FailureCause = {
-    FailureCause(ex.getMessage, ex.getClass.getSimpleName)
+  def apply(exception: Throwable): FailureResponse = {
+    FailureResponse(
+      status = FailureResponseStatus(
+        message      = exception.getMessage,
+        statusCode   = 500,
+        appErrorCode = 1500
+      )
+    )
   }
 
-  def apply(exception: Throwable): FailureResponse = {
-    val causes = Iterator.iterate(exception.getCause)(_.getCause)
-      .takeWhile(Option(_).nonEmpty)
-      .map      ( toFailureCause )
-      .filter   ( _.message != null)
-      .toList
-
+  def apply(statusCode:Int, appErrorCode:Int, message:String): FailureResponse = {
     FailureResponse(
-      message   = exception.getMessage,
-      error     = exception.getClass.getSimpleName,
-      causes    = causes
+      status = FailureResponseStatus(
+        message      = message,
+        statusCode   = statusCode,
+        appErrorCode = appErrorCode
+      )
     )
   }
 }

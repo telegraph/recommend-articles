@@ -9,10 +9,10 @@ class FailureResponseSpecs
 {
   "Given 'FailureResponse'" - {
     "should be possible to create a 'FailureResponse' with nested exceptions" in {
-      FailureResponse(sampleException3) shouldBe expectedFailureWithNestedResponse
+      FailureResponse(sampleException3) shouldBe expectedFailureWithExceptionResponse
     }
     "should be possible to create a 'FailureResponse' without nested exceptions" in {
-      FailureResponse(sampleException1) shouldBe expectedFailureWithoutNestedResponse
+      FailureResponse(statusCode = 400, appErrorCode = 1000, message = "error") shouldBe expectedFailureResponse
     }
   }
 }
@@ -23,18 +23,16 @@ object FailureResponseSpecs {
   val sampleException2: RuntimeException = new RuntimeException("exception 2", sampleException1)
   val sampleException3: Exception        = new Exception       ("exception 3", sampleException2)
 
-  val expectedFailureWithNestedResponse = FailureResponse(
-    message = "exception 3",
-    error   = "Exception",
-    causes  = Seq(
-      FailureCause(message = "exception 2", error = "RuntimeException"),
-      FailureCause(message = "exception 1", error = "RuntimeException")
+  val expectedFailureWithExceptionResponse = FailureResponse(FailureResponseStatus(
+      statusCode = 500,
+      appErrorCode = 1500,
+      message = "exception 3"
     )
   )
 
-  val expectedFailureWithoutNestedResponse = FailureResponse(
-    message = "exception 1",
-    error   = "RuntimeException",
-    causes  = Seq.empty
-  )
+  val expectedFailureResponse = FailureResponse(FailureResponseStatus(
+    statusCode = 400,
+    appErrorCode = 1000,
+    message = "error"
+  ))
 }
