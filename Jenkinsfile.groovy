@@ -112,6 +112,21 @@ ansiColor('xterm') {
                 """
             }
 
+            stage("Code Freeze Check"){
+                echo "Is code freeze: ${env.CODE_FREEZE}"
+                if (env.CODE_FREEZE == 'true') {
+                    echo "Freeze!"
+                    currentBuild.result = 'ABORTED'
+                    error('There is a code freeze')
+                } else {
+                    echo "NO Freeze - Deploying to prod!"
+                }
+            }
+
+            stage('Prod Manual Deploy') {
+                input "Would you like to deploy this version to PROD?"
+            }
+
             stage("Validate prod deploy") {
 //                timeout(time: 60, unit: 'MINUTES') {
 //
