@@ -39,8 +39,8 @@
                 "value": "sports"
             },
             {
-                "key": "uri",
-                "value": "http://www.telegraph.co.uk/test/fake/article2"
+                "key": "url",
+                "value" : "http://www.telegraph.co.uk/news/article-2/"
             }
         ]
     },
@@ -62,7 +62,7 @@
                 "type": "text"
             },
             {
-                "data": "http://www.telegraph.co.uk/first/image.jpeg",
+                "data": "http://www.telegraph.co.uk/first/image2.jpeg",
                 "alt-text": "first-image-alt-text",
                 "credit": "",
                 "caption": "First Image",
