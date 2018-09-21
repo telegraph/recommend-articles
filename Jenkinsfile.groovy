@@ -32,7 +32,7 @@ ansiColor('xterm') {
                 checkout changelog: false, poll: false, scm: [
                     $class: 'GitSCM',
                     branches: [[
-                        name: 'master'
+                        name: 'feature/populate-thumnail-image'
                     ]],
                     doGenerateSubmoduleConfigurations: false,
                     extensions: [[
@@ -106,57 +106,68 @@ ansiColor('xterm') {
               )
             }
 
-            stage("PreProd Tests"){
+            stage("Integration Tests"){
                sh """
                   echo "Running It Tests"
                 """
             }
 
+            stage("Code Freeze Check"){
+                echo "Is code freeze: ${env.CODE_FREEZE}"
+                if (env.CODE_FREEZE == 'true') {
+                    echo "Freeze!"
+                    currentBuild.result = 'ABORTED'
+                    error('There is a code freeze')
+                } else {
+                    echo "NO Freeze - Deploying to prod!"
+                }
+            }
+
             stage("Validate prod deploy") {
-//                timeout(time: 60, unit: 'MINUTES') {
+                timeout(time: 2, unit: 'MINUTES') {
+
+                    current_commit = sh(returnStdout: true, script: 'git show-ref --tags --head --hash| head -n1').trim()
+                    previous_release_tag = sh(returnStdout: true, script: 'git show-ref --tags --head | sort -V -k2,2 | tail -n1 | cut -d " " -f1').trim()
+                    tickets = sh(returnStdout: true, script: """git log --full-diff $previous_release_tag..$current_commit | grep -o 'PLAT-[0-9]*'| sort -u | uniq |awk '{print "https://jira.aws.telegraph.co.uk/browse/"\$1}'""").trim()
+                    authors = sh(returnStdout: true, script: """git log --full-diff $previous_release_tag..$current_commit | grep -o 'Author: .*' | sed -e 's/Author: //g' | sort -u | uniq""").trim()
+
+                    sendMessage(
+                        "The *$projectName* pipeline is waiting to be approved for prod deployment:\n${env.BUILD_URL}/input" +
+                        "\nTicket in this release:\n$tickets" +
+                        "\nCoded by:\n$authors", "#newsroom-eng-releases"
+                    )
+                    approver = input(message: 'Approve deployment?', submitterParameter: 'username_approval')
+                    date = new Date()
+                    sendMessage(
+                    "The *$projectName* build: ${env.BUILD_URL} has been approved by https://jenkins-prod.api-platforms.telegraph.co.uk/user/${approver}/ at ${date}",
+                    "#newsroom-eng-releases"
+                    )
+                }
+            }
+
+//            stage("Prod Deploy"){
+//              sendNotification("Deploy Prod", "${env.SLACK_PLATFORMS_RELEASES}", "#platforms_releases",
+//                """
+//                  ${sbtFolder}/sbt prod:stackSetup
+//                """
+//              )
+//            }
 //
-//                    current_commit = sh(returnStdout: true, script: 'git show-ref --tags --head --hash| head -n1').trim()
-//                    previous_release_tag = sh(returnStdout: true, script: 'git show-ref --tags --head | sort -V -k2,2 | tail -n1 | cut -d " " -f1').trim()
-//                    tickets = sh(returnStdout: true, script: """git log --full-diff $previous_release_tag..$current_commit | grep -o 'PLAT-[0-9]*'| sort -u | uniq |awk '{print "https://jira.aws.telegraph.co.uk/browse/"\$1}'""").trim()
-//                    authors = sh(returnStdout: true, script: """git log --full-diff $previous_release_tag..$current_commit | grep -o 'Author: .*' | sed -e 's/Author: //g' | sort -u | uniq""").trim()
+//            stage("Release Notes"){
+//                // Possible error if there is a commit different from the trigger commit
+//                github_commit = sh(returnStdout: true, script: 'git rev-parse HEAD').trim()
 //
-//                    sendMessage(
-//                        "The *$projectName* pipeline is waiting to be approved for prod deployment:\n${env.BUILD_URL}/input" +
-//                        "\nTicket in this release:\n$tickets" +
-//                        "\nCoded by:\n$authors", "#platforms_releases"
-//                    )
-//                    approver = input(message: 'Approve deployment?', submitterParameter: 'username_approval')
-//                    date = new Date()
-//                    sendMessage(
-//                    "The *$projectName* build: ${env.BUILD_URL} has been approved by https://jenkins-prod.api-platforms.telegraph.co.uk/user/${approver}/ at ${date}",
-//                    "#platforms_releases"
-//                    )
-//                }
-            }
-
-            stage("Prod Deploy"){
-              sendNotification("Deploy Prod", "${env.SLACK_PLATFORMS_RELEASES}", "#platforms_releases",
-                """
-                  ${sbtFolder}/sbt prod:stackSetup
-                """
-              )
-            }
-
-            stage("Release Notes"){
-                // Possible error if there is a commit different from the trigger commit
-                github_commit = sh(returnStdout: true, script: 'git rev-parse HEAD').trim()
-
-                //Realease on Git
-                println("\n[TRACE] **** Releasing to github ${github_token}, ${pipeline_version}, ${github_commit} ****")
-                sh """#!/bin/bash
-                    GITHUB_COMMIT_MSG=\$(curl -H "Content-Type: application/json" -H "Authorization: token ${github_token}" https://api.github.com/repos/telegraph/${projectName}/commits/\"${github_commit}\" | /usr/local/bin/jq \'.commit.message\')
-                    echo "GITHUB_COMMIT_MSG: \${GITHUB_COMMIT_MSG}"
-                    echo "GITHUB_COMMIT_DONE: DONE"
-                    C_DATA="{\\\"tag_name\\\": \\\"${pipeline_version}\\\",\\\"target_commitish\\\": \\\"master\\\",\\\"name\\\": \\\"${pipeline_version}\\\",\\\"body\\\": \${GITHUB_COMMIT_MSG},\\\"draft\\\": false,\\\"prerelease\\\": false}"
-                    echo "C_DATA: \${C_DATA}"
-                    curl -H "Content-Type: application/json" -H "Authorization: token ${github_token}" -X POST -d "\${C_DATA}" https://api.github.com/repos/telegraph/${projectName}/releases
-                """
-            }
+//                //Realease on Git
+//                println("\n[TRACE] **** Releasing to github ${github_token}, ${pipeline_version}, ${github_commit} ****")
+//                sh """#!/bin/bash
+//                    GITHUB_COMMIT_MSG=\$(curl -H "Content-Type: application/json" -H "Authorization: token ${github_token}" https://api.github.com/repos/telegraph/${projectName}/commits/\"${github_commit}\" | /usr/local/bin/jq \'.commit.message\')
+//                    echo "GITHUB_COMMIT_MSG: \${GITHUB_COMMIT_MSG}"
+//                    echo "GITHUB_COMMIT_DONE: DONE"
+//                    C_DATA="{\\\"tag_name\\\": \\\"${pipeline_version}\\\",\\\"target_commitish\\\": \\\"master\\\",\\\"name\\\": \\\"${pipeline_version}\\\",\\\"body\\\": \${GITHUB_COMMIT_MSG},\\\"draft\\\": false,\\\"prerelease\\\": false}"
+//                    echo "C_DATA: \${C_DATA}"
+//                    curl -H "Content-Type: application/json" -H "Authorization: token ${github_token}" -X POST -d "\${C_DATA}" https://api.github.com/repos/telegraph/${projectName}/releases
+//                """
+//            }
         }
     }
 }
