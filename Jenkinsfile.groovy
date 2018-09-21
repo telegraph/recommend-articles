@@ -32,7 +32,7 @@ ansiColor('xterm') {
                 checkout changelog: false, poll: false, scm: [
                     $class: 'GitSCM',
                     branches: [[
-                        name: 'feature/populate-thumnail-image'
+                        name: 'master'
                     ]],
                     doGenerateSubmoduleConfigurations: false,
                     extensions: [[
@@ -106,7 +106,7 @@ ansiColor('xterm') {
               )
             }
 
-            stage("Integration Tests"){
+            stage("PreProd Tests"){
                sh """
                   echo "Running It Tests"
                 """
