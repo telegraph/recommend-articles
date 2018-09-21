@@ -17,7 +17,6 @@ services:
     expose:
       - "9000"
   engine-api:
-    build: .
     image: "385050320367.dkr.ecr.eu-west-1.amazonaws.com/wiremock-swagger/validator"
     command: "--swagger-url=\"https://raw.githubusercontent.com/telegraph/platforms-swagger-specs/master/newsroom/recommend-articles-engine-api.yaml\" --verbose --port 8081"
     volumes:
