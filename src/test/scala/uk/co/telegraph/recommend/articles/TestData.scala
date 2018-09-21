@@ -75,8 +75,8 @@ trait TestData {
           value = "news"
         ),
         MetadataExtension(
-          key   = "uri",
-          value = "http://www.telegraph.co.uk/test/fake/article1"
+          key   = "url",
+          value = "http://www.telegraph.co.uk/news/article-1/"
         )
       )
     ),
@@ -96,7 +96,7 @@ trait TestData {
           `html-data` = Some("<p>first paragraph</p>")
         ),
         BodyImage(
-          data        = Some("http://www.telegraph.co.uk/first/image.jpeg"),
+          data        = Some("http://www.telegraph.co.uk/first/image1.jpeg"),
           `alt-text`  = Some("first-image-alt-text"),
           credit      = Some(""),
           caption     = Some("First Image"),
@@ -149,8 +149,8 @@ trait TestData {
           value = "sports"
         ),
         MetadataExtension(
-          key   = "uri",
-          value = "http://www.telegraph.co.uk/test/fake/article2"
+          key   = "url",
+          value = "http://www.telegraph.co.uk/news/article-2/"
         )
       )
     ),
@@ -170,7 +170,7 @@ trait TestData {
           `html-data` = Some("<p>first paragraph</p>")
         ),
         BodyImage(
-          data        = Some("http://www.telegraph.co.uk/first/image.jpeg"),
+          data        = Some("http://www.telegraph.co.uk/first/image2.jpeg"),
           `alt-text`  = Some("first-image-alt-text"),
           credit      = Some(""),
           caption     = Some("First Image"),
@@ -305,8 +305,8 @@ trait TestData {
     score    = 0.9,
     `type`   = "article",
     headline = "Fake, \"Headline's\"",
-    url      = None,
-    thumbnail= None,
+    url      = Some("http://www.telegraph.co.uk/news/article-1/"),
+    thumbnail= Some("http://www.telegraph.co.uk/first/image1.jpeg"),
     pubdate  = Some(sampleZoneDateTimeStr),
     channel  = Some("news"),
     source   = "AEM",
@@ -317,8 +317,8 @@ trait TestData {
     score    = 0.8,
     `type`   = "article",
     headline = "Fake Headline",
-    url      = None,
-    thumbnail= None,
+    url      = Some("http://www.telegraph.co.uk/news/article-2/"),
+    thumbnail= Some("http://www.telegraph.co.uk/first/image2.jpeg"),
     pubdate  = Some("2016-01-01T12:00:00.000Z"),
     channel  = Some("sports"),
     source   = "PA",

@@ -11,7 +11,7 @@ import uk.co.telegraph.recommend.articles.flows.RecommendArticleFlow._
 import uk.co.telegraph.recommend.articles.models.{ArticleChannel, ArticleSource, QueryFilter, RecommendArticles}
 import uk.co.telegraph.recommend.articles.routes.models.{RecommendArticleItem, RecommendArticleResult}
 import uk.co.telegraph.recommend.articles.utils
-import uk.co.telegraph.ucm.domain.{MetadataExtension, UnifiedContentModel}
+import uk.co.telegraph.ucm.domain.{BodyImage, MetadataExtension, UnifiedContentModel}
 
 import scala.concurrent.Future
 
@@ -29,10 +29,10 @@ class RecommendArticleFlowImpl( private val storageClient: StorageClient, val re
       Source.single(scoreMap.keySet)
         .via       ( storageClient.getByIds )
         .mapConcat (_.toList)
-        .map       ( item => {
-          val contentId = item.metadata.`content-id`
+        .map       ( ucmItem => {
+          val contentId = ucmItem.metadata.`content-id`
           val score     = scoreMap.getOrElse( contentId, 0.0 )
-          toRecommenderResult(item, score)
+          toRecommenderResult(ucmItem, score)
         })
         .fold(Seq.empty[RecommendArticleItem])(_:+_)
     })
@@ -103,7 +103,7 @@ object RecommendArticleFlow{
       url       = ucmModel.metadata.extensions.collectFirst({
         case MetadataExtension("url", url) => url
       }),
-      thumbnail = None,
+      thumbnail = leadImageUrlFromUcmObj(ucmModel),
       pubdate   = ucmModel.metadata.source.flatMap(_.`created-date`).map(utils.dateTimeToString),
       channel   = ucmModel.metadata.extensions.collectFirst({
         case MetadataExtension("channel", channel) => channel
@@ -111,5 +111,11 @@ object RecommendArticleFlow{
       source    = ucmModel.metadata.source.map(_.`original-feed-name`).getOrElse("unknown"),
       authors   = ucmModel.content.authors.map(_.name)
     )
+  }
+
+  def leadImageUrlFromUcmObj(ucmObj: UnifiedContentModel): Option[String] = {
+    ucmObj.content.body.collectFirst( {
+      case BodyImage(data, _, _, _, _) => data.get
+    })
   }
 }

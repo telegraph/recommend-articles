@@ -39,8 +39,8 @@
                 "value": "news"
             },
             {
-                "key": "uri",
-                "value": "http://www.telegraph.co.uk/test/fake/article1"
+                "key": "url",
+                "value" : "http://www.telegraph.co.uk/news/article-1/"
             }
         ]
     },
@@ -62,7 +62,7 @@
                 "type": "text"
             },
             {
-                "data": "http://www.telegraph.co.uk/first/image.jpeg",
+                "data": "http://www.telegraph.co.uk/first/image1.jpeg",
                 "alt-text": "first-image-alt-text",
                 "credit": "",
                 "caption": "First Image",

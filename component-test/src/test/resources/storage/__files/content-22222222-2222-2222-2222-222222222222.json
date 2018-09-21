@@ -1,77 +1,216 @@
 {
-    "metadata": {
-        "content-id": "22222222-2222-2222-2222-222222222222",
-        "type": "article",
-        "premium": false,
-        "language": "en-GB",
-        "tmg-created-date": "2016-01-01T12:00:00.000Z",
-        "tmg-last-modified-date": "2016-01-01T12:00:00.000Z",
-        "source": {
-            "original-source": "PA",
-            "original-feed-name": "PA",
-            "source-id": "pa",
-            "created-date": "2016-01-01T12:00:00.000Z"
-        },
-        "desk": "Fake Article",
-        "rights": [
-            {
-                "copyright-holder": "copyright-holder",
-                "copyright-notice": "copyright-notice",
-                "use-allowed-from-date": "use-allowed-from-date",
-                "use-allowed-to-date": "use-allowed-to-date"
-            }
-        ],
-        "location": [
-            {
-                "name": "london",
-                "uri": "www.telegraph.co.uk/london"
-            }
-        ],
-        "annotations": [
-            {
-                "name": "article",
-                "uri": "www.telegraph.co.uk/article"
-            }
-        ],
-        "extensions": [
-            {
-                "key": "channel",
-                "value": "sports"
-            },
-            {
-                "key": "uri",
-                "value": "http://www.telegraph.co.uk/test/fake/article2"
-            }
-        ]
+  "metadata": {
+    "content-id": "22222222-2222-2222-2222-222222222222",
+    "type": "article",
+    "premium": false,
+    "language": "en-gb",
+    "active": true,
+    "tmg-created-date": "2018-09-20T10:50:13.000Z",
+    "tmg-last-modified-date": "2018-09-20T12:45:46.993Z",
+    "source": {
+      "original-source": "Telegraph",
+      "original-feed-name": "pa",
+      "source-id": "d61e69b4-bcc0-11e8-94bb-06d4359927da",
+      "created-date": "2018-09-20T10:50:13.000Z"
     },
-    "content": {
-        "headline": "Fake Headline",
-        "byline": "By Fake Author",
-        "authors": [
-            {
-                "name": "Fake Author",
-                "uri": "wwww.telegraph.co.uk/fake/author",
-                "role": "Fake Journalist",
-                "location": "somewhere"
-            }
-        ],
-        "body": [
-            {
-                "data": "first paragraph",
-                "html-data": "<p>first paragraph</p>",
-                "type": "text"
-            },
-            {
-                "data": "http://www.telegraph.co.uk/first/image.jpeg",
-                "alt-text": "first-image-alt-text",
-                "credit": "",
-                "caption": "First Image",
-                "html-caption": "<p>first paragraph</p>",
-                "type": "image"
-            }
-        ],
-        "gallery":[],
-        "reviews":[],
-        "livestream":[]
-    }
+    "rights": [],
+    "location": [],
+    "annotations": [
+      {
+        "name": "Christopher Williams",
+        "uri": "editors:christopher-williams"
+      },
+      {
+        "name": "20th Century Fox",
+        "uri": "topics:organisations/20th-century-fox"
+      },
+      {
+        "name": "Business",
+        "uri": "structure:business"
+      },
+      {
+        "name": "Companies",
+        "uri": "structure:business/companies"
+      },
+      {
+        "name": "Martin Gilbert",
+        "uri": "topics:people/martin-gilbert"
+      },
+      {
+        "name": "Sky",
+        "uri": "topics:organisations/sky"
+      },
+      {
+        "name": "Registration Wall Content",
+        "uri": "structure:regwall-content"
+      },
+      {
+        "name": "Rupert Murdoch",
+        "uri": "topics:people/rupert-murdoch"
+      },
+      {
+        "name": "Netflix",
+        "uri": "topics:organisations/netflix"
+      },
+      {
+        "name": "Disney",
+        "uri": "topics:things/disney"
+      }
+    ],
+    "extensions": [
+      {
+        "key": "channel",
+        "value": "sports"
+      },
+      {
+        "key": "url",
+        "value": "https://www.telegraph.co.uk/business/2018/09/20/sky-battle-lines-drawn-fox-disney-comcast-prepare-27bn-auction/"
+      },
+      {
+        "key": "pageId",
+        "value": "ArSnNgvfl7LD"
+      },
+      {
+        "key": "authoringId",
+        "value": "d61e69b4-bcc0-11e8-94bb-06d4359927da"
+      },
+      {
+        "key": "tmgId",
+        "value": "m4ywcyltmnxwemdbgu2di4dvojwwsyle"
+      }
+    ]
+  },
+  "content": {
+    "headline": "Sky battle lines drawn as Fox, Disney and Comcast prepare for £27bn auction",
+    "authors": [
+      {
+        "name": "Christopher Williams",
+        "uri": "/authors/christopher-williams/",
+        "url": "https://www.telegraph.co.uk/authors/christopher-williams/"
+      },
+      {
+        "name": "Sophie Christie",
+        "uri": "/authors/sophie-christie/",
+        "url": "https://www.telegraph.co.uk/authors/sophie-christie/"
+      }
+    ],
+    "body": [
+      {
+        "data": "https://www.telegraph.co.uk/content/dam/business/2018/09/20/TELEMMGLPICT000175175560_trans%2B%2BpVlberWd9EgFPZtcLiMQfyf2A9a6I9YchsjMeADBa08.jpeg",
+        "alt-text": "The takeover saga's dramatic finale ranks as the biggest ever such auction",
+        "credit": " Luca Bruno/ AP",
+        "caption": "The takeover saga's dramatic finale ranks as the biggest ever such auction",
+        "html-caption": "The takeover saga's dramatic finale ranks as the biggest ever such auction",
+        "type": "image"
+      },
+      {
+        "data": "The protracted battle over ownership of Sky will be all but settled over 24 hours this weekend in a rare auction in which three global media heavyweights will go three rounds.",
+        "html-data": "<p>The protracted battle over ownership of Sky will be all but settled over 24 hours this weekend in a rare auction in which three global media heavyweights will go three rounds.</p>",
+        "type": "text"
+      },
+      {
+        "data": "Comcast will take on the tag team of 21st Century Fox and Disney, with investors expecting the winning side to value Sky at at least £27bn.",
+        "html-data": "<p>Comcast will take on the tag team of 21st Century Fox and Disney, with investors expecting the winning side to value Sky at at least £27bn.</p>",
+        "type": "text"
+      },
+      {
+        "data": "The Takeover Panel, the City’s regulator of merger processes, will act as referee between the Murdoch family, who contol Fox and will line up alongside Disney chairman Bob Iger, and Brian Roberts, the Comcast chief.",
+        "html-data": "<p>The Takeover Panel, the City’s regulator of merger processes, will act as referee between the Murdoch family, who contol Fox and will line up alongside Disney chairman Bob Iger, and Brian Roberts, the Comcast chief.</p>",
+        "type": "text"
+      },
+      {
+        "data": "The rules of engagement have been drawn up by the Takeover Panel after negotiations with both sides. The auction will formally begin at 5pm on Friday and conclude at the same time on Saturday.",
+        "html-data": "<p>The rules of engagement have&nbsp;been drawn up by the Takeover Panel after negotiations with both sides. The auction will formally begin at 5pm on Friday and conclude at the same time on Saturday.</p>",
+        "type": "text"
+      },
+      {
+        "data": "There will be three rounds of bidding. In the first round, only the contender with the lowest offer going into the auction, currently Disney and Fox, will be able to bid. Comcast has offered £14.75 per share for Sky, ahead of Disney and Fox on £14.",
+        "html-data": "<p>There will be three rounds of bidding. In the first round, only the contender with the lowest offer going into the auction, currently Disney and Fox, will be able to bid. Comcast has offered £14.75 per share for Sky, ahead of Disney and Fox on £14.</p>",
+        "type": "text"
+      },
+      {
+        "data": "In the second round Comcast will be able to respond. If the US cable giant, which also owns Universal, the Hollywood studio behind Jurassic World, does not bid then the auction will conclude with Disney and Fox the winner.",
+        "html-data": "<p>In the second round Comcast will be able to respond. If the US cable giant, which also owns Universal, the Hollywood studio behind Jurassic World, does not bid then the auction will conclude with Disney and Fox the winner.</p>",
+        "type": "text"
+      },
+      {
+        "data": "However, if Comcast does hit back with a better offer, then there will be a final round in which both sides will be able to make their best and final offers.",
+        "html-data": "<p>However, if Comcast does hit back with a better offer, then there will be a final round in which both&nbsp;sides will be able to make their best and final offers.</p>",
+        "type": "text"
+      },
+      {
+        "data": "<iframe layout=\"responsive\" sandbox=\"allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-forms\" resizable=\"\" src=\"https://cf-particle-html.eip.telegraph.co.uk/e480178c-5d1d-4f75-8058-e19a92620d8e.html\" scrolling=\"no\" frameborder=\"0\"> </iframe>",
+        "alt-text": "Comcast / Fox / Sky / Disney timeline",
+        "type": "particle"
+      },
+      {
+        "data": "The Takeover Panel is expected to publish the final offers as they are handed over to Sky’s independent directors, who are led by deputy chairman Martin Gilbert, the joint-chief executive of Standard Life Aberdeen. Sky’s chief executive Jeremy Darroch and chief operating officer Andrew Griffith will also assess the bids, alongside the other directors not appointed by Fox.",
+        "html-data": "<p>The Takeover Panel is expected to publish the final offers as they are handed over to Sky’s independent directors, who are led by deputy chairman Martin Gilbert, the joint-chief executive of Standard Life Aberdeen. Sky’s chief executive Jeremy Darroch and chief operating officer Andrew Griffith will also assess the bids, alongside the other directors not appointed by Fox.</p>",
+        "type": "text"
+      },
+      {
+        "data": "The Sky board will then recommend which offer Sky shareholders should accept.",
+        "html-data": "<p>The Sky board will then recommend which offer Sky shareholders should accept.</p>",
+        "type": "text"
+      },
+      {
+        "data": "In a note to Sky staff, Mr Darroch said: “Having three of the world’s best and largest media companies seeking to own Sky is a major and positive endorsement of our strategy and the execution of our plans.",
+        "html-data": "<p>In a note to Sky staff, Mr Darroch said: “Having three of the world’s best and largest media companies seeking to own Sky is a major and positive endorsement of our strategy and the execution of our plans.</p>",
+        "type": "text"
+      },
+      {
+        "data": "“A process like the one announced today doesn’t happen very often and is therefore likely to generate coverage and speculation in the media over the coming days. It is also likely to wrap up sometime over the weekend or early Monday morning and could therefore be outside of normal business hours.”",
+        "html-data": "<p>“A process like the one announced today doesn’t happen very often and is therefore likely to generate coverage and speculation in the media over the coming days. It is also likely to wrap up sometime over the weekend or early Monday morning and could therefore be outside of normal business hours.”</p>",
+        "type": "text"
+      },
+      {
+        "data": "Disney and Fox go into the process at a potential advantage, as Fox already owns 39pc of Sky. If the final offers are similar in price, that could prove decisive, as Sky’s independent directors will be obliged to consider the likelihood of each buyer passing the 50pc shareholder approval threshold required to complete a deal.",
+        "html-data": "<p>Disney and Fox go into the process at a potential advantage, as Fox already owns 39pc of Sky. If the final offers are similar in price, that could prove decisive, as Sky’s independent directors will be obliged to consider the likelihood of each buyer passing the 50pc shareholder approval threshold required to complete a deal.</p>",
+        "type": "text"
+      },
+      {
+        "data": "<iframe layout=\"responsive\" sandbox=\"allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-forms\" resizable=\"\" src=\"https://cf-particle-html.eip.telegraph.co.uk/dd45dfb8-aca9-4a35-9206-d39e25dbaac2.html\" scrolling=\"no\" frameborder=\"0\"> </iframe>",
+        "alt-text": "Markets Hub - Sky",
+        "type": "particle"
+      },
+      {
+        "data": "While Fox will be on the front lines of the auction, its bidding strategy will effectively be controlled by Disney, which has agreed to buy most of its assets, including its Sky stake, for $71bn following another bid battle with Comcast in the United States. The Murdoch family rocked the media world last year by selling out of global TV and film to focus on US news and sport.",
+        "html-data": "<p>While Fox will be on the front lines of the auction, its bidding strategy will effectively be controlled by Disney, which has agreed to buy most of its assets, including its Sky stake, for $71bn following another bid battle with Comcast in the United States. The Murdoch family rocked the media world last year by <a href=\"https://www.telegraph.co.uk/business/2017/12/14/disney-acquire-fox-assets-39bn/\">selling out of global TV and film</a> to focus on US news and sport.</p>",
+        "type": "text"
+      },
+      {
+        "data": "If Comcast is defeated in the UK, Sky will be owned by Fox for several months before being taken over again by Disney next year.",
+        "html-data": "<p>If Comcast is defeated in the UK, Sky will be owned by Fox for several months before being taken over again by Disney next year.</p>",
+        "type": "text"
+      },
+      {
+        "data": "The dramatic finale of a takeover saga that has run for almost two years ranks as the biggest ever such auction. PTT won control of Cove Energy after Shell dropped out of a head-to-head in 2012. Tata paid £6.2bn in an auction of Corus steel in 2007 against CSN of Brazil.",
+        "html-data": "<p>The dramatic finale of a takeover saga&nbsp;that has run for almost two years ranks as the biggest ever such auction. PTT won control of Cove Energy after Shell dropped out of a head-to-head in 2012. Tata paid £6.2bn in an auction of Corus steel in 2007 against CSN of Brazil.</p>",
+        "type": "text"
+      },
+      {
+        "data": "The competition to buy Sky means it is likely to change hands for more than double its valuation before Fox originally bid £10.75 per share in December 2016, which at the time was a 40pc premium on the market price.",
+        "html-data": "<p>The competition to buy Sky means it is likely to change hands for more than double its valuation before Fox originally bid £10.75 per share in December 2016, which at the time was a 40pc premium on the market price.</p>",
+        "type": "text"
+      },
+      {
+        "data": "Sky’s operating performance also markedly improved as Fox faced a series regulatory hurdles that delayed its plans and opened the door for Comcast to gatecrash.",
+        "html-data": "<p>Sky’s operating performance also markedly improved as Fox faced a series regulatory hurdles that delayed its plans and opened the door for Comcast to gatecrash.</p>",
+        "type": "text"
+      },
+      {
+        "data": "It secured a cheaper deal for Premier League rights after the end of fierce competition with BT and signed a deal to bring Netflix onto its set-top boxes, neutralising what had been viewed as a threat. Meanwhile its Italian operation prevailed in a long football rights war with rival Mediaset Premium.",
+        "html-data": "<p>It secured a cheaper deal for Premier League rights after the end of fierce competition with BT and signed a deal to bring Netflix onto its set-top boxes, neutralising what had been viewed as a threat. Meanwhile its Italian operation prevailed in a long football rights war with rival Mediaset Premium.</p>",
+        "type": "text"
+      },
+      {
+        "data": "Both Disney and Comcast want control of Sky partly as a defence against incursions by the tech giants into entertainment. Its direct relationships with 26 million consumers across Europe are viewed as valuable, along with its technology, brand and customer service operations.",
+        "html-data": "<p>Both Disney and Comcast want control of Sky partly as a defence against incursions by the tech giants into entertainment. Its direct relationships with 26 million consumers across Europe are viewed as valuable, along with its technology, brand and customer service operations.</p>",
+        "type": "text"
+      }
+    ],
+    "gallery": [],
+    "reviews": [],
+    "livestream": []
+  }
 }

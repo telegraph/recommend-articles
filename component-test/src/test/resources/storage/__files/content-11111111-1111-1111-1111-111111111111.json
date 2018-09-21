@@ -1,77 +1,238 @@
 {
-    "metadata": {
-        "content-id": "11111111-1111-1111-1111-111111111111",
-        "type": "article",
-        "premium": false,
-        "language": "en-GB",
-        "tmg-created-date": "2017-01-01T12:00:00.000Z",
-        "tmg-last-modified-date": "2017-01-01T12:00:00.000Z",
-        "source": {
-            "original-source": "Telegraph",
-            "original-feed-name": "AEM",
-            "source-id": "tmg",
-            "created-date": "2017-01-01T12:00:00.000Z"
-        },
-        "desk": "Fake Article",
-        "rights": [
-            {
-                "copyright-holder": "copyright-holder",
-                "copyright-notice": "copyright-notice",
-                "use-allowed-from-date": "use-allowed-from-date",
-                "use-allowed-to-date": "use-allowed-to-date"
-            }
-        ],
-        "location": [
-            {
-                "name": "london",
-                "uri": "www.telegraph.co.uk/london"
-            }
-        ],
-        "annotations": [
-            {
-                "name": "article",
-                "uri": "www.telegraph.co.uk/article"
-            }
-        ],
-        "extensions": [
-            {
-                "key": "channel",
-                "value": "news"
-            },
-            {
-                "key": "uri",
-                "value": "http://www.telegraph.co.uk/test/fake/article1"
-            }
-        ]
+  "metadata": {
+    "content-id": "11111111-1111-1111-1111-111111111111",
+    "type": "article",
+    "premium": false,
+    "language": "en-gb",
+    "active": true,
+    "tmg-created-date": "2018-09-20T10:34:14.000Z",
+    "tmg-last-modified-date": "2018-09-20T10:34:16.365Z",
+    "source": {
+      "original-source": "Telegraph",
+      "original-feed-name": "AEM",
+      "source-id": "03bc29c3-bb24-11e8-9dc5-06d4359927da",
+      "created-date": "2018-09-20T10:34:14.000Z"
     },
-    "content": {
-        "headline": "Fake, \"Headline's\"",
-        "byline": "By Fake Author",
-        "authors": [
-            {
-                "name": "Fake Author",
-                "uri": "wwww.telegraph.co.uk/fake/author",
-                "role": "Fake Journalist",
-                "location": "somewhere"
-            }
-        ],
-        "body": [
-            {
-                "data": "first paragraph",
-                "html-data": "<p>first paragraph</p>",
-                "type": "text"
-            },
-            {
-                "data": "http://www.telegraph.co.uk/first/image.jpeg",
-                "alt-text": "first-image-alt-text",
-                "credit": "",
-                "caption": "First Image",
-                "html-caption": "<p>first paragraph</p>",
-                "type": "image"
-            }
-        ],
-        "gallery":[],
-        "reviews":[],
-        "livestream":[]
-    }
+    "rights": [],
+    "location": [],
+    "annotations": [
+      {
+        "name": "Careers",
+        "uri": "topics:things/careers"
+      },
+      {
+        "name": "People",
+        "uri": "topics:people"
+      },
+      {
+        "name": "Business",
+        "uri": "structure:business"
+      },
+      {
+        "name": "Registration Wall Content",
+        "uri": "structure:regwall-content"
+      }
+    ],
+    "extensions": [
+      {
+        "key": "url",
+        "value": "https://www.telegraph.co.uk/business/2018/09/20/become-killer-negotiator-nine-steps/"
+      },
+      {
+        "key": "pageId",
+        "value": "ArSFYxgxgNlB"
+      },
+      {
+        "key": "authoringId",
+        "value": "03bc29c3-bb24-11e8-9dc5-06d4359927da"
+      },
+      {
+        "key": "tmgId",
+        "value": "mf2gk3twnbzxc2jtnrxtc5brn44w4mdd"
+      }
+    ]
+  },
+  "content": {
+    "headline": "How to become a killer negotiator in nine steps",
+    "authors": [
+      {
+        "name": "Sophie Christie",
+        "uri": "/authors/sophie-christie/",
+        "url": "https://www.telegraph.co.uk/authors/sophie-christie/"
+      }
+    ],
+    "body": [
+      {
+        "data": "https://www.telegraph.co.uk/content/dam/business/2016/02/12/Mad-Men-boardroom_trans%2B%2BqVzuuqpFlyLIwiB6NTmJwfSVWeZ_vEN7c6bHu2jJnT8.jpg",
+        "alt-text": "Mad Men's Don Draper, played by Jon Hamm (far left) always gets the deal done",
+        "caption": "Mad Men's Don Draper, played by Jon Hamm (far left) always gets the deal done",
+        "html-caption": "Mad Men's Don Draper, played by Jon Hamm (far left) always gets the deal done",
+        "type": "image"
+      },
+      {
+        "data": "Negotiating is something we do on a daily basis, be it at work or at home, and is key to ensuring that you always get the best outcome.",
+        "html-data": "<p>Negotiating&nbsp;is something we do on a daily basis, be it at work or at home, and is key to ensuring that you always get the best outcome.&nbsp;</p>",
+        "type": "text"
+      },
+      {
+        "data": "According to the late soul singer Marvin Gaye, \"Negotiation means getting the best of your opponent\". But negotiation is an art form that is hard to learn and even harder to master.",
+        "html-data": "<p>According to the late soul singer Marvin Gaye, \"Negotiation means getting the best of your opponent\". But negotiation is an art form that is hard to learn and even harder to master.&nbsp;</p>",
+        "type": "text"
+      },
+      {
+        "data": "We've cherry-picked the most powerful tips for becoming a killer negotiator from Quora, the global question and answer network, to find the secret to getting what you want, every time.",
+        "html-data": "<p>We've cherry-picked the most powerful tips for becoming a&nbsp;killer negotiator from Quora, the global question and answer network, to find the secret to getting what you want, every time.</p>",
+        "type": "text"
+      },
+      {
+        "data": "\"You need to know as much as you can about the other party/topic/project\", explains Sebastian Amieva, a Quora poster who studied negotiation at Harvard Law School.",
+        "html-data": "<p>\"You need to know as much as you can about the other party/topic/project\", explains Sebastian Amieva, a Quora poster who studied negotiation at Harvard Law School.</p>",
+        "type": "text"
+      },
+      {
+        "data": "Fellow Quora poster Margaret Weiss agrees: \"Negotiation is about the other party. It's not about you. You can be the best orator in the world – concise, convincing, eloquent – but if the other party cannot relate to you, regardless of your skills, all of those efforts will be in vain.",
+        "html-data": "<p>Fellow Quora poster Margaret Weiss agrees:&nbsp;\"Negotiation is about the other party. It's not about you. You can be the best orator in the world – concise, convincing, eloquent – but if the other party cannot relate to you, regardless of your skills, all of those efforts will be in vain.</p>",
+        "type": "text"
+      },
+      {
+        "data": "\"The first thing that negotiators do is research their target audience – and based on the information gathered they adjust their pitch to the exact expectations of the other party. This research is what makes a person a good negotiator: the ability to connect to the needs of the other party, and the ability to speak on the same level.\"",
+        "html-data": "<p>\"The first thing that negotiators&nbsp;do is research their target audience – and based on the information gathered they adjust their pitch to the exact expectations of the other party. This research is what makes a person a good negotiator: the ability to connect to the needs of the other party, and the ability to speak on the same level.\"</p>",
+        "type": "text"
+      },
+      {
+        "data": "\"A mediator must remain objective in discussing issues, even if they dislike some or all of the parties to the negotiation,\" says Shane Dempsey, a professional mediator.",
+        "html-data": "<p>\"A mediator must remain objective in discussing issues, even if they dislike some or all of the parties to the negotiation,\" says Shane Dempsey, a professional mediator.</p>",
+        "type": "text"
+      },
+      {
+        "data": "Even if you don't like the other parties involved, they should still receive professionalism and courtesy, Ms Dempsey added.",
+        "html-data": "<p>Even if you don't like the other parties involved, they should still receive professionalism and courtesy, Ms Dempsey added.</p>",
+        "type": "text"
+      },
+      {
+        "data": "https://www.telegraph.co.uk/content/dam/men/2018/03/15/TELEMMGLPICT000157436323_trans%2B%2BF9BD_fYQB0teZOF4IslN2Ui6L4XAoX9KJ12arlP6KhI.jpeg",
+        "alt-text": "Remain objective and professional during negotiations ",
+        "credit": "Niall Carson/PA",
+        "caption": "Remain objective and professional during negotiations ",
+        "html-caption": "Remain objective and professional during negotiations ",
+        "type": "image"
+      },
+      {
+        "data": "According to behavioural science expert Craig Dos Santos, asking open-ended questions is key to negotiating, as it gets the other party talking, \"so you can learn more, listen more, and figure out what is driving their thought process\".",
+        "html-data": "<p>According to behavioural science expert Craig Dos Santos, asking open-ended questions is key to negotiating, as it gets the other party&nbsp;talking, \"so you can learn more, listen more, and figure out what is driving their thought process\".</p>",
+        "type": "text"
+      },
+      {
+        "data": "\"Don't ask questions that start with verbs. \"Is that okay?\" or \"Is the budget proposal correct?\" Instead try, \"How can we improve this?\" or \"What changes are needed in the budget proposal?\"",
+        "html-data": "<p>\"Don't ask questions that start with verbs. \"Is that okay?\" or \"Is the budget proposal correct?\" Instead try, \"How can we improve this?\" or \"What changes are needed in the budget proposal?\"</p>",
+        "type": "text"
+      },
+      {
+        "data": "By listening more and talking less, negotiators are able to develop a detailed understanding of the needs of the other person.",
+        "html-data": "<p>By listening more and talking less, negotiators are able to develop&nbsp;a detailed understanding of the needs of the other person.</p>",
+        "type": "text"
+      },
+      {
+        "data": "\"The best negotiator that I've known really didn't talk much,\" says Yishan Wong, a former chief executive of Reddit whose Quora post on this topic received almost 2,000 upvotes (or \"likes\"). \"He would just ask you questions about what you wanted and listen really carefully.",
+        "html-data": "<p>\"The best negotiator that I've known really didn't talk much,\" says Yishan Wong, a former chief executive of Reddit whose Quora&nbsp;post on this topic received almost 2,000 upvotes (or \"likes\"). \"He would just ask you questions about what you wanted and listen really carefully.</p>",
+        "type": "text"
+      },
+      {
+        "data": "\"People like to talk about what they want and how they feel about it, so they will tend to go on about things if you let them, and he would just let them do that, all the while listening really carefully.",
+        "html-data": "<p>\"People like to talk about what they want and how they feel about it, so they will tend to go on about things if you let them, and he would just let them do that, all the while listening really carefully.</p>",
+        "type": "text"
+      },
+      {
+        "data": "\"He would then go away and figure out how to structure the right deal given the resources/abilities at his (or his company's) disposal, and then present them with a deal,\" adds Mr Wong. \"He didn't need to talk them into it very much, the key seemed to be all about getting into their heads to find out what kind of deal would be most appealing to them.\"",
+        "html-data": "<p>\"He would then go away and figure out how to structure the right deal given the resources/abilities at his (or his company's) disposal, and then present them with a deal,\" adds Mr Wong. \"He didn't need to talk them into it very much, the key seemed to be all about getting into their heads to find out what kind of deal would be most appealing to them.\"</p>",
+        "type": "text"
+      },
+      {
+        "data": "https://www.telegraph.co.uk/content/dam/women/2018/02/02/TELEMMGLPICT000153133125_trans%2B%2B8juO8C_Vdx2cT20LARTibjWU-KwRaHvlaJXY1texVLQ.jpeg",
+        "alt-text": "Listen more and talk less is what the experts advise",
+        "credit": "Khosrork",
+        "caption": "Listen more and talk less is what the experts advise",
+        "html-caption": "Listen more and talk less is what the experts advise",
+        "type": "image"
+      },
+      {
+        "data": "Mr Dos Santos has a contrarian approach to negotiation. \"When you get a 'no' you have a real answer,\" he says. \"Being open to (or even inviting) 'no' is respecting the other side's ability to make a choice. Often yes answers are actually maybes, and they also don't give you information about the boundaries.",
+        "html-data": "<p>Mr Dos Santos has a contrarian approach to negotiation. \"When you get a 'no' you have a real answer,\" he says. \"Being open to (or even inviting) 'no' is respecting the other side's ability to make a choice. Often yes answers are actually maybes, and they also don't give you information about the boundaries.</p>",
+        "type": "text"
+      },
+      {
+        "data": "\"A simple example: someone offers you £95,000, and you ask for £100,000. They say yes. What did you learn? Could you have asked for more? Should you have asked for something else instead?\"",
+        "html-data": "<p>\"A simple example: someone offers you £95,000, and you ask for £100,000. They say yes. What did you learn? Could you have asked for more? Should you have asked for something else instead?\"</p>",
+        "type": "text"
+      },
+      {
+        "data": "Mr Dos Santos claims that the key to asking the harder questions is being able to bring the person back after 'no'. \"Hard questions introduce tension, and your ability to ask them is gated by your ability to reduce that tension by making the other party feel okay/better,\" he says. \"Notice the focus on emotion.\"",
+        "html-data": "<p>Mr Dos Santos claims that the key to&nbsp;asking the harder questions is being able to bring the person back after 'no'. \"Hard questions introduce tension, and your ability to ask them is gated by your ability to reduce that tension by making the other party feel okay/better,\" he says. \"Notice the focus on emotion.\"</p>",
+        "type": "text"
+      },
+      {
+        "data": "\"Humans have a basic need for autonomy. If our ability to choose is restricted, we rebel,\" claims Quora poster Brandon Villano.",
+        "html-data": "<p>\"Humans have a basic need for autonomy. If our ability to choose is restricted, we rebel,\" claims Quora poster Brandon Villano.</p>",
+        "type": "text"
+      },
+      {
+        "data": "\"Come up with a few options that are favorable to you, and give them the opportunity to select which one they want. This is very powerful because it makes them feel much more in control (while still satisfying your requirements).",
+        "html-data": "<p>\"Come up with a few options that are favorable to you, and give them the opportunity to select which one they want. This is very powerful because it makes them feel much more in control (while still satisfying your requirements).</p>",
+        "type": "text"
+      },
+      {
+        "data": "\"All in all remember it's a win/win situation you are looking to achieve. You want the other party to feel good about the decision they made and happy that they got what they wanted. If you always come out on top with others feeling cheated, you build a bad reputation and this will make others wary of attempting a transaction with you.\"",
+        "html-data": "<p>\"All in all remember it's a win/win situation you are looking to achieve.&nbsp;You want the other party to feel good about the decision&nbsp;they&nbsp;made and happy that they got what they wanted. If you always come out on top with others feeling cheated, you build a bad reputation and this will make others wary of attempting a transaction with you.\"</p>",
+        "type": "text"
+      },
+      {
+        "data": "\"The other day a friend pinged me because he wanted a discount on an Airbnb rental,\" writes Mr Dos Santos. \"It was £2,700 and he wanted it for £2,000. Instead of just offering £2,000, which would mean the owner would have to fight an internal battle over what the place was actually worth, I helped him over-empathise with her.\"",
+        "html-data": "<p>\"The other day a friend pinged me because he wanted a discount on an Airbnb rental,\" writes Mr Dos Santos. \"It was £2,700 and he wanted it for £2,000. Instead of just offering £2,000, which would mean the owner would have to fight an internal battle over what the place was actually worth, I helped him over-empathise with her.\"</p>",
+        "type": "text"
+      },
+      {
+        "data": "The friend drafted an email that read: \"The place is gorgeous. I loved the photos and I would love to stay there. It's probably worth more than £2,700 and your price is a steal. However, I'm on a company budget, and I can only pay £2,000.\"",
+        "html-data": "<p>The friend drafted an email that read: \"The place is gorgeous. I loved the photos and I would love to stay there. It's probably worth more than £2,700 and your price is a steal. However, I'm on a company budget, and I can only pay £2,000.\"</p>",
+        "type": "text"
+      },
+      {
+        "data": "This is a counter-intuitive approach: this individual has admitted that the asking price is fair and even said that it might be worth more. However, by using emotional manipulation, he got his deal. \"He didn't fight her on valuation, and he made her feel good about the place,\" says Mr Dos Santos. \"He got the discount. £700 in 10 minutes with one email.\"",
+        "html-data": "<p>This is a counter-intuitive approach: this individual has admitted that the asking price is fair and even said that it might be worth more. However, by using emotional manipulation, he got his deal. \"He didn't fight her on valuation, and he made her feel good about the place,\" says Mr Dos Santos. \"He got the discount. £700 in 10 minutes with one email.\"</p>",
+        "type": "text"
+      },
+      {
+        "data": "<iframe layout=\"responsive\" sandbox=\"allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-forms\" resizable=\"\" src=\"https://cf-particle-html.eip.telegraph.co.uk/a6d539a2-c8c8-440f-b379-7adb04bf2ac5.html\" scrolling=\"no\" frameborder=\"0\"> </iframe>",
+        "alt-text": "Meet the multi-millionaire who's given up his job to become a teacher on £25k",
+        "type": "particle"
+      },
+      {
+        "data": "Rather than allowing negotiations to go on interminably, fix a reasonable deadline to get the deal done.",
+        "html-data": "<p>Rather than allowing negotiations to go on interminably, fix a reasonable deadline to get the deal done.</p>",
+        "type": "text"
+      },
+      {
+        "data": "\"It is very helpful to have some deadline/expiration date to create a forcing function for the negotiators,\" says entrepreneur Kacy Qua. \"If you are negotiating on behalf of an organisation and you come out of the negotiation too quickly, your side will think you didn't put up a strong enough fight.",
+        "html-data": "<p>\"It is very helpful to have some deadline/expiration date to create a forcing function for the negotiators,\" says entrepreneur Kacy Qua. \"If you are negotiating on behalf of an organisation and you come out of the negotiation too quickly, your side will think you didn't put up a strong enough fight.</p>",
+        "type": "text"
+      },
+      {
+        "data": "\"Having a deadline also provides a point from which you can work backward, so that you can time the flow of agreements/proposal rejections.\"",
+        "html-data": "<p>\"Having a deadline also provides a point from which you can work backward, so that you can time the flow of agreements/proposal rejections.\"</p>",
+        "type": "text"
+      },
+      {
+        "data": "\"The FBI often trains hostage negotiators by sending them to crisis/suicide hotlines for a year,\" says Mr Dos Santos. \"This is a process I'm currently going through myself. Why? Because it's the ultimate training ground for focusing on someone's emotions, and moving them from A to B. And it's hugely rewarding work.\"",
+        "html-data": "<p>\"The FBI often trains hostage negotiators by sending them to crisis/suicide hotlines for a year,\" says Mr Dos Santos. \"This is a process I'm currently going through myself. Why? Because it's the ultimate training ground for focusing on someone's emotions, and moving them from A to B. And it's hugely rewarding work.\"</p>",
+        "type": "text"
+      },
+      {
+        "data": "Do you have any tried-and-tested negotiation tips? Share them below.",
+        "html-data": "<p><i>Do you have any tried-and-tested negotiation tips? Share them below.</i></p>",
+        "type": "text"
+      }
+    ],
+    "gallery": [],
+    "reviews": [],
+    "livestream": []
+  }
 }
