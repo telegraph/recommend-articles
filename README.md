@@ -148,6 +148,7 @@ Payload:
             "type": "article",
             "headline": "Iran 'may quit nuclear deal' if Donald Trump sabotages benefits of sanctions relief, minister warns",
             "url": "http://www.telegraph.co.uk/news/2018/02/22/iran-may-quit-nuclear-deal-donald-trump-sabotages-benefits-sanctions/",
+            "thumbnail": "https://www.telegraph.co.uk/content/dam/films/2018/02/20/TELEMMGLPICT000154766062_trans%2B%2BpVlberWd9EgFPZtcLiMQfyf2A9a6I9YchsjMeADBa08.jpeg",
             "pubdate": "2018-02-22T14:20:56.173Z",
             "source": "AEM",
             "authors": [
