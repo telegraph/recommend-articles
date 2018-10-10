@@ -32,7 +32,7 @@ ansiColor('xterm') {
                 checkout changelog: false, poll: false, scm: [
                     $class: 'GitSCM',
                     branches: [[
-                        name: 'feature/nf-695-only-return-active-articles'
+                        name: 'master'
                     ]],
                     doGenerateSubmoduleConfigurations: false,
                     extensions: [[
