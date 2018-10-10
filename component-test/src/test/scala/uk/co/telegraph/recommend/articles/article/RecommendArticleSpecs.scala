@@ -1,7 +1,6 @@
 package uk.co.telegraph.recommend.articles.article
 
 import io.restassured.module.scala.RestAssuredSupport._
-import org.hamcrest.Matchers
 import org.hamcrest.Matchers._
 import org.hamcrest.Matchers.hasItem
 import uk.co.telegraph.recommend.articles.ComponentTest

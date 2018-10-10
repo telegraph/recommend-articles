@@ -12,6 +12,12 @@
             "score": 0.8,
             "weight": 1,
             "date-last-modified": "2017-02-07T15:07:56.000Z"
+        },
+        {
+            "content-id": "33333333-3333-3333-3333-333333333333",
+            "score": 0.7,
+            "weight": 1,
+            "date-last-modified": "2017-02-07T15:07:56.000Z"
         }
     ]
 }

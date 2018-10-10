@@ -48,7 +48,17 @@ class RecommendArticleFlowSpecs
   )
 
   "Given the 'RecommendArticleFlow'" - {
-    "it should be possible to get recommendations" - {
+    "it should get recommendations" - {
+      "only returns active ucm items" in {
+        mockRecommenderClientFunc.apply _ when sampleRecommenderRequest returns sampleRecommenderResponse_containingOneInactiveArticle once()
+        mockStorageClientFunc.apply     _ when sampleContentIds__containingOneInactiveArticle         returns Seq(sampleContentObj1, sampleContentObj2, sampleContentObj3) once()
+
+        whenReady(recommenderFlow.getRecommendationFor(sampleRecommendArticle)){ res =>
+          println(res)
+          res shouldBe sampleRecommendArticleResult
+        }
+      }
+
       "without applying any filter" in {
         mockRecommenderClientFunc.apply _ when sampleRecommenderRequest returns sampleRecommenderResponse once()
         mockStorageClientFunc.apply     _ when sampleContentIds         returns Seq(sampleContentObj1, sampleContentObj2) once()
@@ -58,7 +68,7 @@ class RecommendArticleFlowSpecs
         }
       }
 
-      "filtering by range date" in {
+      "by filtering by range date" in {
         mockRecommenderClientFunc.apply _ when sampleRecommenderRequest returns sampleRecommenderResponse once()
         mockStorageClientFunc.apply     _ when Set(sampleContentId1)    returns Seq(sampleContentObj1)    once()
 
@@ -67,7 +77,7 @@ class RecommendArticleFlowSpecs
         }
       }
 
-      "filtering with offset and limit" in {
+      "by filtering with offset and limit" in {
         mockRecommenderClientFunc.apply _ when sampleRecommenderRequest returns sampleRecommenderResponse once()
         mockStorageClientFunc.apply     _ when sampleContentIds         returns Seq(sampleContentObj1, sampleContentObj2) once()
 
@@ -76,7 +86,7 @@ class RecommendArticleFlowSpecs
         }
       }
 
-      "filtering by Source" in {
+      "by filtering by Source" in {
         mockRecommenderClientFunc.apply _ when sampleRecommenderRequest returns sampleRecommenderResponse once()
         mockStorageClientFunc.apply     _ when sampleContentIds         returns Seq(sampleContentObj1, sampleContentObj2) once()
 
@@ -85,7 +95,7 @@ class RecommendArticleFlowSpecs
         }
       }
 
-      "filtering by Channel" in {
+      "by filtering by Channel" in {
         mockRecommenderClientFunc.apply _ when sampleRecommenderRequest returns sampleRecommenderResponse once()
         mockStorageClientFunc.apply     _ when sampleContentIds         returns Seq(sampleContentObj1, sampleContentObj2) once()
 

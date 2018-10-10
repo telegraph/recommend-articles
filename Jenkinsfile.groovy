@@ -32,7 +32,7 @@ ansiColor('xterm') {
                 checkout changelog: false, poll: false, scm: [
                     $class: 'GitSCM',
                     branches: [[
-                        name: 'master'
+                        name: 'feature/nf-695-only-return-active-articles'
                     ]],
                     doGenerateSubmoduleConfigurations: false,
                     extensions: [[
@@ -108,7 +108,7 @@ ansiColor('xterm') {
 
             stage("PreProd Tests"){
                sh """
-                  echo "Running It Tests"
+                  echo "Running It Tests - *** Ignored ***"
                 """
             }
 
