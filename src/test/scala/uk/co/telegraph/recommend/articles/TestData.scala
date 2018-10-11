@@ -33,12 +33,14 @@ trait TestData {
   val sampleZoneDateTimeStr: String        = sampleZoneDateTime
   val sampleContentId1     : String        = "11111111-1111-1111-1111-111111111111"
   val sampleContentId2     : String        = "22222222-2222-2222-2222-222222222222"
+  val sampleContentId3     : String        = "33333333-3333-3333-3333-333333333333"
 
   val sampleContentObj1 = UnifiedContentModel(
     metadata = Metadata(
       `content-id`            = sampleContentId1,
       `type`                  = ContentModelEnum.Article,
       premium                 = false,
+      active                  = Some(true),
       language                = "en-GB",
       `tmg-created-date`      = sampleZoneDateTime,
       `tmg-last-modified-date`= sampleZoneDateTime,
@@ -86,6 +88,7 @@ trait TestData {
       authors = Seq(Author(
         name = "Fake Author",
         uri  = Some("wwww.telegraph.co.uk/fake/author"),
+        url  = Some("wwww.telegraph.co.uk/fake/url"),
         role = Some("Fake Journalist"),
         location = Some("somewhere")
       )),
@@ -113,6 +116,7 @@ trait TestData {
       `content-id`            = sampleContentId2,
       `type`                  = ContentModelEnum.Article,
       premium                 = false,
+      active                  = Some(true),
       language                = "en-GB",
       `tmg-created-date`      = "2016-01-01T12:00:00.000Z",
       `tmg-last-modified-date`= "2016-01-01T12:00:00.000Z",
@@ -160,6 +164,83 @@ trait TestData {
       authors = Seq(Author(
         name = "Fake Author",
         uri  = Some("wwww.telegraph.co.uk/fake/author"),
+        url  = Some("wwww.telegraph.co.uk/fake/author/url"),
+        role = Some("Fake Journalist"),
+        location = Some("somewhere")
+      )),
+      body = Seq(
+        BodyText(
+          data        = Some("first paragraph"),
+          `alt-text`  = None,
+          `html-data` = Some("<p>first paragraph</p>")
+        ),
+        BodyImage(
+          data        = Some("http://www.telegraph.co.uk/first/image2.jpeg"),
+          `alt-text`  = Some("first-image-alt-text"),
+          credit      = Some(""),
+          caption     = Some("First Image"),
+          `html-caption` = Some("<p>first paragraph</p>")
+        )
+      ),
+      gallery    = Seq.empty,
+      reviews    = Seq.empty,
+      livestream = Seq.empty
+    )
+  )
+  val sampleContentObj3 = UnifiedContentModel(
+    metadata = Metadata(
+      `content-id`            = sampleContentId3,
+      `type`                  = ContentModelEnum.Article,
+      premium                 = false,
+      active                  = Some(false),
+      language                = "en-GB",
+      `tmg-created-date`      = "2016-01-01T12:00:00.000Z",
+      `tmg-last-modified-date`= "2016-01-01T12:00:00.000Z",
+      source                  = Some(MetadataSource(
+        `original-source`    = "PA",
+        `original-feed-name` = "PA",
+        `source-id`          = "pa",
+        `created-date`       = Some("2016-01-01T12:00:00.000Z")
+      )),
+      desk                    = Some("Fake Article"),
+      rights                  = Seq(
+        MetadataRights(
+          `copyright-holder`      = Some("copyright-holder"),
+          `copyright-notice`      = Some("copyright-notice"),
+          `use-allowed-from-date` = Some("use-allowed-from-date"),
+          `use-allowed-to-date`   = Some("use-allowed-to-date")
+        )
+      ),
+      location                = Seq(
+        MetadataNameUri(
+          name = "london",
+          uri = Some("www.telegraph.co.uk/london")
+        )
+      ),
+      annotations             = Seq(
+        MetadataNameUri(
+          name = "article",
+          uri = Some("www.telegraph.co.uk/article")
+        )
+      ),
+      extensions              = Seq(
+        MetadataExtension(
+          key   = "channel",
+          value = "sports"
+        ),
+        MetadataExtension(
+          key   = "url",
+          value = "http://www.telegraph.co.uk/news/article-2/"
+        )
+      )
+    ),
+    content = Content(
+      headline = "Fake Headline",
+      byline = Some("By Fake Author"),
+      authors = Seq(Author(
+        name = "Fake Author",
+        uri  = Some("wwww.telegraph.co.uk/fake/author"),
+        url  = Some("wwww.telegraph.co.uk/fake/author/url"),
         role = Some("Fake Journalist"),
         location = Some("somewhere")
       )),
@@ -185,6 +266,7 @@ trait TestData {
 
   val sampleContentIds   = Set(sampleContentId1,  sampleContentId2)
   val sampleContentItems = Seq(sampleContentObj1, sampleContentObj2)
+  val sampleContentIds__containingOneInactiveArticle  = Set(sampleContentId1,  sampleContentId2, sampleContentId3)
 
   val sampleRecommenderRequest = RecommenderRequest(
     channel = Some("News"),
@@ -196,6 +278,15 @@ trait TestData {
     data           = Seq(
       RecommenderItem( sampleContentId1, 0.9, "2017-01-01T12:00:00.000Z"),
       RecommenderItem( sampleContentId2, 0.8, "2016-01-01T12:00:00.000Z")
+    )
+  )
+
+  val sampleRecommenderResponse_containingOneInactiveArticle = RecommenderResponse(
+    `result-count`= 3,
+    data           = Seq(
+      RecommenderItem( sampleContentId1, 0.9, "2017-01-01T12:00:00.000Z"),
+      RecommenderItem( sampleContentId2, 0.8, "2016-01-01T12:00:00.000Z"),
+      RecommenderItem( sampleContentId3, 0.7, "2015-01-01T12:00:00.000Z")
     )
   )
 

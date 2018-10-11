@@ -29,6 +29,7 @@ class RecommendArticleFlowImpl( private val storageClient: StorageClient, val re
       Source.single(scoreMap.keySet)
         .via       ( storageClient.getByIds )
         .mapConcat (_.toList)
+        .filter(_.metadata.active.getOrElse(false))
         .map       ( ucmItem => {
           val contentId = ucmItem.metadata.`content-id`
           val score     = scoreMap.getOrElse( contentId, 0.0 )

@@ -13,7 +13,7 @@ object Common extends AutoPlugin {
 
     organization      := "uk.co.telegraph",
     version           := "1.0.0-" + buildNumber.getOrElse("SNAPSHOT"),
-    scalaVersion      := "2.11.8",
+    scalaVersion      := "2.12.4",
     isSnapshot        := buildNumber.isEmpty,
     scalacOptions     ++= Seq(
       "-target:jvm-1.8",
